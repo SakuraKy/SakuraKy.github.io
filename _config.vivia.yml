@@ -24,7 +24,7 @@ hue: 250                         # 主题色调 (例如：红: 0，橙: 60，蓝
 # 个人信息
 avatar: /tupian/touxiang.png                         # 头像图片文件路径，相对于 /source 目录
 author: SakuraKy
-subtitle: This is the subtitle
+subtitle: Genius is an infinite capacity for taking pains.
 links:
   - name: Twitter
     icon: fa-brands fa-twitter      # 访问 https://fontawesome.com/search 获取图标代码
