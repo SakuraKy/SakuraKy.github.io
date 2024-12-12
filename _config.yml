@@ -5,7 +5,7 @@ keywords: null
 author: 'SakuraKy'
 language:  ''
 timezone: ''
-url: https://sakuraky.github.io
+url: https://www.sakuraky.cn
 permalink: ':year/:month/:day/:title/'
 permalink_defaults: null
 pretty_urls:
@@ -61,7 +61,7 @@ ignore: null
 theme: vivia
 deploy:
   type: 'git'
-  repo: git@github.com:SakuraKy/SakuraKy.github.io.git
+  repo: git@github.com:SakuraKy/www.sakuraky.cn.git
   branch: gh-pages
 archive_generator:
   per_page: 0
