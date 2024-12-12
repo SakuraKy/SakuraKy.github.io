@@ -61,7 +61,7 @@ ignore: null
 theme: vivia
 deploy:
   type: 'git'
-  repo: git@github.com:SakuraKy/www.sakuraky.cn.git
+  repo: git@github.com:SakuraKy/sakuraky.github.io.git
   branch: gh-pages
 archive_generator:
   per_page: 0
