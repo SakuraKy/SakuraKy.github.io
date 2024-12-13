@@ -181,21 +181,21 @@ public class StudentDemo {
 
 * 成员变量使用过程
 
-![1](images\1.png)
+![1](/tupian/1(1).png)
 
 * 成员方法调用过程
 
-![2](images\2.png)
+![2](/tupian/2(1).png)
 
 ### 2.2 多个对象内存图
 
 * 成员变量使用过程
 
-![3](images\3.png)
+![3](/tupian/3(1).png)
 
 * 成员方法调用过程
 
-![4](images\4.png)
+![4](/tupian/4(1).png)
 
 * 总结：
 
@@ -570,7 +570,7 @@ public class StudentDemo {
 
 ### 5.4 练习2
 
-![111](images\111.jpg)
+![111](/tupian/111.jpg)
 
 ```java
 public class User {

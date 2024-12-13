@@ -666,7 +666,7 @@ public class Test10 {
 
 # 练习九：双色球
 
- ![图片1](img\图片1.png)
+ ![图片1](/tupian/图片1.png)
 
 
 
