@@ -1,12 +1,12 @@
-title: 'SakuraKy的博客'
-subtitle: 'Genius is an infinite capacity for taking pains.'
-description: '日记,算法,vlog'
+title: "SakuraKy的博客"
+subtitle: "Genius is an infinite capacity for taking pains."
+description: "日记,算法,vlog"
 keywords: null
-author: 'SakuraKy'
-language:  ''
-timezone: ''
+author: "SakuraKy"
+language: ""
+timezone: ""
 url: https://www.sakuraky.cn
-permalink: ':year/:month/:day/:title/'
+permalink: ":year/:month/:day/:title/"
 permalink_defaults: null
 pretty_urls:
   trailing_index: true
@@ -17,15 +17,15 @@ tag_dir: tags
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
-i18n_dir: ':lang'
+i18n_dir: ":lang"
 skip_render: null
-new_post_name: ':title.md'
+new_post_name: ":title.md"
 default_layout: post
 titlecase: false
 external_link:
   enable: true
   field: site
-  exclude: ''
+  exclude: ""
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -35,17 +35,17 @@ syntax_highlighter: highlight.js
 highlight:
   line_number: true
   auto_detect: false
-  tab_replace: ''
+  tab_replace: ""
   wrap: true
   hljs: false
 prismjs:
   preprocess: true
   line_number: true
-  tab_replace: ''
+  tab_replace: ""
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
-  order_by: '-date'
+  order_by: "-date"
 default_category: uncategorized
 category_map: null
 tag_map: null
@@ -60,8 +60,15 @@ exclude: null
 ignore: null
 theme: vivia
 deploy:
-  type: 'git'
+  type: "git"
   repo: git@github.com:SakuraKy/sakuraky.github.io.git
   branch: gh-pages
 archive_generator:
   per_page: 0
+sitemap:
+  path:
+    - sitemap.xml
+    - sitemap.txt
+  rel: false
+  tags: true
+  categories: true
