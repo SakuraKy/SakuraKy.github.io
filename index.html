@@ -160,7 +160,7 @@
         
             <a class="category-link" href="/categories/java/">
                 java
-                <div class="category-count">16</div>
+                <div class="category-count">17</div>
             </a>
         </div>
     </div>
@@ -183,6 +183,96 @@
     </div>
     <div id="content-body">
       
+   
+
+
+<article id="post-day18-API" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/12/27/day18-API/">day16-API</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-12-27T09:58:00.000Z" itemprop="datePublished">2024-12-27</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/java/">java</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            34k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/" rel="tag">API</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              课程目标能够熟练使用 Math 类中的常见方法
+能够熟练使用 System 类中的常见方法
+能够理解 Object 类的常见方法作用
+能够熟练使用 Objects 类的常见方法
+能够熟练使用 BigInteger 类的常见方法
+能够熟练使用 BigDecimal 类的常见方法
+1 Math 类1.1 概述
+tips：了解内容
+
+查看 API 文档，我们可以看到 API 文档中关于 Math 类的定义如下：
+
+Math 类所在包为 java.lang 包，因此在使用的时候不需要进行导包。并且 Math 类被 final 修饰了，因此该类是不能被继承的。
+Math 类包含执行基本数字运算的方法，我们可以使用 Math 类完成基本的数学运算。
+要想使用 Math 类我们就需要先创建该类的对象，那么创建对象就需要借助于构造方法。因此我们就需要首先查看一下 API 文档，看看 API 文档中针对 Math 类有没有提供对应的构造方法。通过 API 文档来查看
+一下 Math 类的成员，如下所示：
+
+在 API 文档中没有体现可用的构造方法，因此我们就不能直接通过 new 关键字去创建 Ma...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/tupian/j16.jpg)" 
+      href="/2024/12/27/day18-API/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
    
 
 
@@ -1101,116 +1191,6 @@ java中的API
 
 
 
-   
-
-
-<article id="post-day06-方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/12/12/day06-%E6%96%B9%E6%B3%95/">day06-方法</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-12-12T08:40:00.000Z" itemprop="datePublished">2024-12-12</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/java/">java</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            9.1k words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%B9%E6%B3%95/" rel="tag">方法</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              1. 方法概述1.1 方法的概念​	方法（method）是程序中最小的执行单元
-
-注意：
-方法必须先创建才可以使用，该过程成为方法定义
-方法创建后并不是直接可以运行的，需要手动使用后，才执行，该过程成为方法调用
-
-
-
-2. 方法的定义和调用2.1 无参数方法定义和调用
-定义格式：
-123public static void 方法名 (   ) &#123;	// 方法体;&#125;
-
-范例：
-123public static void method (    ) &#123;	// 方法体;&#125;
-
-调用格式：
-1方法名();
-
-范例：
-1method();
-
-注意：
-​	方法必须先定义，后调用，否则程序将报错
-
-
-2.3 无参数方法的练习
-需求：设计一个方法用于打印两个数中的较大数 
-思路：
-①定义一个方法，用于打印两个数字中的较大数，例如getMax() 
-②方法中定义两个变量，用于保存两个数字 
-③使用分支语句分两种情况对两个数字的大小关系进行处理 
-④在main()方法中调用定义好的方法
-
-
-代码：
-
-1234567891011121314151617181920...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/tupian/j06.jpg)" 
-      href="/2024/12/12/day06-%E6%96%B9%E6%B3%95/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
 
   <nav id="page-nav">
     <!-- 在第二页时 page.prev_link 不知为何无法返回正确的链接 -->
@@ -1218,7 +1198,7 @@ java中的API
       <i class="fa-solid fa-angle-left"></i>
     </a>
     <div id="num-bar">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a>  
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a>  
     </div>
     <a id="next-btn" class="page-nav-btn " href="/page/2/">
       <i class="fa-solid fa-angle-right"></i>
