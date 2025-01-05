@@ -160,7 +160,7 @@
         
             <a class="category-link" href="/categories/java/">
                 java
-                <div class="category-count">22</div>
+                <div class="category-count">25</div>
             </a>
         </div>
     </div>
@@ -183,6 +183,262 @@
     </div>
     <div id="content-body">
       
+   
+
+
+<article id="post-day24-可变参数&amp;综合练习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/01/05/day24-%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0&%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0/">day21-可变参数&amp;综合训练</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-01-05T12:04:00.000Z" itemprop="datePublished">2025-01-05</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/java/">java</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            15k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag">练习</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              1. 可变参数在JDK1.5之后，如果我们定义一个方法需要接受多个参数，并且多个参数类型一致，我们可以对其简化.
+格式：
+1修饰符 返回值类型 方法名(参数类型... 形参名)&#123;  &#125;
+
+底层：
+​ 其实就是一个数组
+好处：
+​ 在传递数据的时候，省的我们自己创建数组并添加元素了，JDK 底层帮我们自动创建数组并添加元素了
+代码演示:
+1234567891011121314  public class ChangeArgs &#123;    public static void main(String[] args) &#123;        int sum = getSum(6, 7, 2, 12, 2121);        System.out.println(sum);    &#125;    public static int getSum(int... arr) &#123;   		int sum = 0;   	     for (int a : arr) &#123;         sum += a;        &#125;   ...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/tupian/j21.jpg)" 
+      href="/2025/01/05/day24-%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0&%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-day23-stream流和方法引用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/01/05/day23-stream%E6%B5%81%E5%92%8C%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/">day20-集合04</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-01-05T11:58:00.000Z" itemprop="datePublished">2025-01-05</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/java/">java</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            19k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              1.不可变集合1.1 什么是不可变集合​ 是一个长度不可变，内容也无法修改的集合
+1.2 使用场景​ 如果某个数据不能被修改，把它防御性地拷贝到不可变集合中是个很好的实践。
+​ 当集合对象被不可信的库调用时，不可变形式是安全的。
+简单理解：
+​ 不想让别人修改集合中的内容
+比如说：
+1，斗地主的 54 张牌，是不能添加，不能删除，不能修改的
+2，斗地主的打牌规则：单张，对子，三张，顺子等，也是不能修改的
+3，用代码获取的操作系统硬件信息，也是不能被修改的
+1.3 不可变集合分类
+不可变的 list 集合
+不可变的 set 集合
+不可变的 map 集合
+
+1.4 不可变的 list 集合123456789101112131415161718192021222324252627282930313233343536373839404142public class ImmutableDemo1 &#123;    public static void main(String[] args) &#123;        /*            创建不可变的List集合         ...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/tupian/j20.jpg)" 
+      href="/2025/01/05/day23-stream%E6%B5%81%E5%92%8C%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
+   
+
+
+<article id="post-day23-集合03" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/01/05/day23-%E9%9B%86%E5%90%8803/">day20-集合03</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-01-05T11:56:00.000Z" itemprop="datePublished">2025-01-05</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/java/">java</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            7.3k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            
+              1.Map 集合1.1Map 集合概述和特点【理解】
+Map 集合概述
+1interface Map&lt;K,V&gt;  K：键的类型；V：值的类型
+
+Map 集合的特点
+
+双列集合,一个键对应一个值
+键不可以重复,值可以重复
+
+
+Map 集合的基本使用
+123456789101112131415public class MapDemo01 &#123;    public static void main(String[] args) &#123;        //创建集合对象        Map&lt;String,String&gt; map = new HashMap&lt;String,String&gt;();        //V put(K key, V value) 将指定的值与该映射中的指定键相关联        map.put(&quot;itheima001&quot;,&quot;林青霞&quot;);        map.put(&quot;itheima002&quot;,&quot;张曼玉&quot;);        map.put(&...
+            
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  with-pic  "
+       style="background-image: url(/tupian/j20.jpg)" 
+      href="/2025/01/05/day23-%E9%9B%86%E5%90%8803/" 
+    >
+       
+      <div class="overlay">
+        <i class="fa-solid fa-angle-right with-pic"></i>
+      </div>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+
+
+
+
+
    
 
 
@@ -844,359 +1100,6 @@ Math 类包含执行基本数字运算的方法，我们可以使用 Math 类完
     <a class="right-panel  with-pic  "
        style="background-image: url(/tupian/j15.jpg)" 
       href="/2024/12/13/day15-%E7%AC%94%E8%AE%B0/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-day14笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/12/13/day14%E7%AC%94%E8%AE%B0/">day14-面向对象进阶(2)</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-12-13T07:48:00.000Z" itemprop="datePublished">2024-12-13</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/java/">java</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            12k words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              day14今日内容
-多态
-包
-final
-权限修饰符
-代码块
-
-教学目标
- 
-能够说出使用多态的前提条件
-
- 
-理解多态的向上转型
-
- 
-理解多态的向下转型
-
- 
-能够知道多态的使用场景
-
- 
-包的作用
-
- 
-public和private权限修饰符的作用
-
- 
-描述final修饰的类的特点
-
- 
-描述final修饰的方法的特点
-
- 
-描述final修饰的变量的特点
-
-
-第一章 多态1.1 多态的形式多态是继封装、继承之后，面向对象的第三大特性。
-多态是出现在继承或者实现关系中的。
-多态体现的格式：
-12父类类型 变量名 = new 子类/实现类构造器;变量名.方法名();
-
-多态的前提：有继承关系，子类对象是可以赋值给父类类型的变量。例如Animal是一个动物类型，而Cat是一个猫类型。Cat继承了Animal，Cat对象也是Animal类型，自然可以赋值给父类类型的变量。
-1.2 多态的使用场景如果没有多态，在下图中register方法只能传递学生对象，其他的Teacher和administrator对象是无法传递给register方法方法的，在这种情况下，只能定义三个不同的r...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/tupian/j14.jpg)" 
-      href="/2024/12/13/day14%E7%AC%94%E8%AE%B0/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-day13面向对象进阶" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/12/13/day13%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BF%9B%E9%98%B6/">day13-面向对象进阶(1)</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-12-13T07:42:00.000Z" itemprop="datePublished">2024-12-13</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/java/">java</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            19k words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              面向对象进阶部分学习方法：特点：
-​	逻辑性没有那么强，但是概念会比较多。
-​	记忆部分重要的概念，理解课堂上讲解的需要大家掌握的概念，多多练习代码。
-day13今日内容
-复习回顾
-static关键字
-继承
-
-教学目标
- 
-能够掌握static关键字修饰的变量调用方式
-
- 
-能够掌握static关键字修饰的方法调用方式
-
- 
-知道静态代码块的格式和应用场景
-
- 
-能够写出类的继承格式
-
- 
-能够说出继承的特点
-
- 
-能够区分this和super的作用
-
- 
-能够说出方法重写的概念
-
- 
-能够说出方法重写的注意事项
-
-
-第一章 复习回顾1.1 如何定义类类的定义格式如下:
-12345修饰符 class 类名 &#123;    // 1.成员变量（属性）    // 2.成员方法 (行为)     // 3.构造方法 （初始化类的对象数据的）&#125;
-
-例如:
-123456public class Student &#123;    // 1.成员变量    public String name ;    public char sex ; // &#x27;男&#x27;  ...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/tupian/j13.jpg)" 
-      href="/2024/12/13/day13%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BF%9B%E9%98%B6/" 
-    >
-       
-      <div class="overlay">
-        <i class="fa-solid fa-angle-right with-pic"></i>
-      </div>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
-
-
-
-
-
-   
-
-
-<article id="post-day11-ArrayList&amp;学生管理系统" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/12/13/day11-ArrayList&%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">day11-ArrayList&amp;学生管理系统</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-12-13T07:41:00.000Z" itemprop="datePublished">2024-12-13</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-  <a class="meta-cate-link" href="/categories/java/">java</a>
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            11k words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" rel="tag">学生管理系统</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            
-              1.ArrayList集合和数组的优势对比：
-长度可变
-添加数据的时候不需要考虑索引，默认将数据添加到末尾
-
-1.1 ArrayList类概述
-什么是集合
-​	提供一种存储空间可变的存储模型，存储的数据容量可以发生改变
-
-ArrayList集合的特点
-​	长度可以变化，只能存储引用数据类型。
-
-泛型的使用
-​	用于约束集合中存储元素的数据类型
-
-
-1.2 ArrayList类常用方法1.2.1 构造方法
-
-
-方法名
-说明
-
-
-
-public ArrayList()
-创建一个空的集合对象
-
-
-1.2.2 成员方法
-
-
-方法名
-说明
-
-
-
-public boolean add(要添加的元素)
-将指定的元素追加到此集合的末尾
-
-
-public boolean remove(要删除的元素)
-删除指定元素,返回值表示是否删除成功
-
-
-public E  remove(int   index)
-删除指定索引处的元素，返回被删除的元素
-
-
-public E   set(int index,E   element)
-修改指定索引处的元素，返回被修改的元素
-
-
-public E   get(int...
-            
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  with-pic  "
-       style="background-image: url(/tupian/j11.jpg)" 
-      href="/2024/12/13/day11-ArrayList&%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" 
     >
        
       <div class="overlay">
