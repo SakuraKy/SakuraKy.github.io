@@ -1,3 +1,4 @@
+https://www.sakuraky.cn/2025/01/07/git&GitHub/
 https://www.sakuraky.cn/2025/01/06/day25-IO(%E5%BC%82%E5%B8%B8&File&%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B%EF%BC%89/
 https://www.sakuraky.cn/2025/01/06/day25-IO%E6%B5%81%EF%BC%88%E5%85%B6%E4%BB%96%E6%B5%81%EF%BC%89/
 https://www.sakuraky.cn/2025/01/06/day25-IO%E6%B5%81%EF%BC%88%E5%AD%97%E8%8A%82%E6%B5%81&%E5%AD%97%E7%AC%A6%E6%B5%81%EF%BC%89/
@@ -62,5 +63,7 @@ https://www.sakuraky.cn/tags/IO/
 https://www.sakuraky.cn/tags/%E5%9F%BA%E7%A1%80%E5%8A%A0%E5%BC%BA/
 https://www.sakuraky.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/
 https://www.sakuraky.cn/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/
+https://www.sakuraky.cn/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/
 https://www.sakuraky.cn/categories/%E7%AE%97%E6%B3%95/
 https://www.sakuraky.cn/categories/java/
+https://www.sakuraky.cn/categories/git/
