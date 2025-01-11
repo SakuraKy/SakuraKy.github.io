@@ -821,3 +821,5 @@ public class A05_QuickSortDemo {
 ```
 
 其他排序方式待更新~
+
+## 本篇文章代码由[黑马程序员](https://space.bilibili.com/37974444?spm_id_from=333.337.search-card.all.click)提供

@@ -2,38 +2,38 @@
 title: day13-面向对象进阶(1)
 date: 2024-12-13 15:42:00
 tags:
-    - 面向对象
+  - 面向对象
 categories: java
 photos: /tupian/j13.jpg
 ---
+
 ## 面向对象进阶部分学习方法：
 
 特点：
 
-​	逻辑性没有那么强，但是概念会比较多。
+​ 逻辑性没有那么强，但是概念会比较多。
 
-​	记忆部分重要的概念，理解课堂上讲解的需要大家掌握的概念，多多练习代码。
+​ 记忆部分重要的概念，理解课堂上讲解的需要大家掌握的概念，多多练习代码。
 
 # day13
 
 ## 今日内容
 
 - 复习回顾
-- static关键字
+- static 关键字
 - 继承
 
 ## 教学目标
 
-- [ ] 能够掌握static关键字修饰的变量调用方式
-- [ ] 能够掌握static关键字修饰的方法调用方式
+- [ ] 能够掌握 static 关键字修饰的变量调用方式
+- [ ] 能够掌握 static 关键字修饰的方法调用方式
 - [ ] 知道静态代码块的格式和应用场景
 
 - [ ] 能够写出类的继承格式
 - [ ] 能够说出继承的特点
-- [ ] 能够区分this和super的作用
+- [ ] 能够区分 this 和 super 的作用
 - [ ] 能够说出方法重写的概念
 - [ ] 能够说出方法重写的注意事项
-
 
 # 第一章 复习回顾
 
@@ -44,7 +44,7 @@ photos: /tupian/j13.jpg
 ```java
 修饰符 class 类名 {
     // 1.成员变量（属性）
-    // 2.成员方法 (行为) 
+    // 2.成员方法 (行为)
     // 3.构造方法 （初始化类的对象数据的）
 }
 ```
@@ -78,11 +78,11 @@ Student stu = new Student();
 
 1.使用 `private` 关键字来修饰成员变量。
 
-2.使用`public`修饰getter和setter方法。
+2.使用`public`修饰 getter 和 setter 方法。
 
 #### 1.3.2 封装的步骤实现
 
-1. private修饰成员变量
+1. private 修饰成员变量
 
 ```java
 public class Student {
@@ -91,7 +91,7 @@ public class Student {
 }
 ```
 
-2. public修饰getter和setter方法
+2. public 修饰 getter 和 setter 方法
 
 ```java
 public class Student {
@@ -167,7 +167,7 @@ public class CreateStu02 {
 
         // 使用对象访问成员变量 输出值
         System.out.println(s1.name);
-        System.out.println(s1.age); 
+        System.out.println(s1.age);
 
         Student s2 = new Student();
         // 使用对象访问成员变量 赋值
@@ -179,17 +179,17 @@ public class CreateStu02 {
 }
 ```
 
-## 1.5 this关键字的作用
+## 1.5 this 关键字的作用
 
-### 1.5.1 this关键字的作用
+### 1.5.1 this 关键字的作用
 
-this代表所在类的当前对象的引用（地址值），即代表当前对象。
+this 代表所在类的当前对象的引用（地址值），即代表当前对象。
 
-### 1.5.2 this关键字的应用
+### 1.5.2 this 关键字的应用
 
-#### 1.5.2.1 用于普通的gettter与setter方法
+#### 1.5.2.1 用于普通的 gettter 与 setter 方法
 
-this出现在实例方法中，谁调用这个方法（哪个对象调用这个方法），this就代表谁（this就代表哪个对象）。
+this 出现在实例方法中，谁调用这个方法（哪个对象调用这个方法），this 就代表谁（this 就代表哪个对象）。
 
 ```java
 public class Student {
@@ -220,25 +220,25 @@ public class Student {
 
 #### 1.5.2.2 用于构造方法中
 
-this出现在构造方法中，代表构造方法正在初始化的那个对象。
+this 出现在构造方法中，代表构造方法正在初始化的那个对象。
 
 ```java
 public class Student {
     private String name;
     private int age;
-    
+
     // 无参数构造方法
-    public Student() {} 
-    
+    public Student() {}
+
     // 有参数构造方法
     public Student(String name,int age) {
     	this.name = name;
-    	this.age = age; 
+    	this.age = age;
     }
 }
 ```
 
-# 第二章 static关键字   
+# 第二章 static 关键字
 
 ## 2.1 概述
 
@@ -255,7 +255,7 @@ public class Student {
     public Student() {
 
     }
-    
+
     // 有参数构造方法
     public Student(String  a) {
 
@@ -263,30 +263,30 @@ public class Student {
 }
 ```
 
-我们已经知道面向对象中，存在类和对象的概念，我们在类中定义了一些成员变量，例如name,age,sex ,结果发现这些成员变量，每个对象都存在（因为每个对象都可以访问）。
+我们已经知道面向对象中，存在类和对象的概念，我们在类中定义了一些成员变量，例如 name,age,sex ,结果发现这些成员变量，每个对象都存在（因为每个对象都可以访问）。
 
-而像name ,age , sex确实是每个学生对象都应该有的属性，应该属于每个对象。
+而像 name ,age , sex 确实是每个学生对象都应该有的属性，应该属于每个对象。
 
-所以Java中成员（**变量和方法**）等是存在所属性的，Java是通过static关键字来区分的。**static关键字在Java开发非常的重要，对于理解面向对象非常关键。**
+所以 Java 中成员（**变量和方法**）等是存在所属性的，Java 是通过 static 关键字来区分的。**static 关键字在 Java 开发非常的重要，对于理解面向对象非常关键。**
 
-关于 `static` 关键字的使用，它可以用来修饰的成员变量和成员方法，被static修饰的成员是**属于类**的是放在静态区中，没有static修饰的成员变量和方法则是**属于对象**的。我们上面案例中的成员变量都是没有static修饰的，所以属于每个对象。
+关于 `static` 关键字的使用，它可以用来修饰的成员变量和成员方法，被 static 修饰的成员是**属于类**的是放在静态区中，没有 static 修饰的成员变量和方法则是**属于对象**的。我们上面案例中的成员变量都是没有 static 修饰的，所以属于每个对象。
 
-## 2.2 定义格式和使用 
+## 2.2 定义格式和使用
 
-static是静态的意思。 static可以修饰成员变量或者修饰方法。
+static 是静态的意思。 static 可以修饰成员变量或者修饰方法。
 
 ### 2.2.1 静态变量及其访问
 
-有static修饰成员变量，说明这个成员变量是属于类的，这个成员变量称为**类变量**或者**静态成员变量**。 直接用  类名访问即可。因为类只有一个，所以静态成员变量在内存区域中也只存在一份。所有的对象都可以共享这个变量。
+有 static 修饰成员变量，说明这个成员变量是属于类的，这个成员变量称为**类变量**或者**静态成员变量**。 直接用 类名访问即可。因为类只有一个，所以静态成员变量在内存区域中也只存在一份。所有的对象都可以共享这个变量。
 
 **如何使用呢**
 
-例如现在我们需要定义传智全部的学生类，那么这些学生类的对象的学校属性应该都是“传智”，这个时候我们可以把这个属性定义成static修饰的静态成员变量。
+例如现在我们需要定义传智全部的学生类，那么这些学生类的对象的学校属性应该都是“传智”，这个时候我们可以把这个属性定义成 static 修饰的静态成员变量。
 
 **定义格式**
 
 ```java
-修饰符 static 数据类型 变量名 = 初始值；    
+修饰符 static 数据类型 变量名 = 初始值；
 ```
 
 **举例**
@@ -312,15 +312,15 @@ public static void  main(String[] args){
 
 ### 2.2.2 实例变量及其访问
 
-无static修饰的成员变量属于每个对象的，  这个成员变量叫**实例变量**，之前我们写成员变量就是实例成员变量。
+无 static 修饰的成员变量属于每个对象的， 这个成员变量叫**实例变量**，之前我们写成员变量就是实例成员变量。
 
-**需要注意的是**：实例成员变量属于每个对象，必须创建类的对象才可以访问。   
+**需要注意的是**：实例成员变量属于每个对象，必须创建类的对象才可以访问。
 
 **格式：对象.实例成员变量**
 
 ### 2.2.3 静态方法及其访问
 
-有static修饰成员方法，说明这个成员方法是属于类的，这个成员方法称为**类方法或者**静态方法**。 直接用  类名访问即可。因为类只有一个，所以静态方法在内存区域中也只存在一份。所有的对象都可以共享这个方法。
+有 static 修饰成员方法，说明这个成员方法是属于类的，这个成员方法称为**类方法或者**静态方法\*\*。 直接用 类名访问即可。因为类只有一个，所以静态方法在内存区域中也只存在一份。所有的对象都可以共享这个方法。
 
 与静态成员变量一样，静态方法也是直接通过**类名.方法名称**即可访问。
 
@@ -331,7 +331,7 @@ public class Student{
     public static String schoolName = "传智播客"； // 属于类，只有一份。
     // .....
     public static void study(){
-    	System.out.println("我们都在黑马程序员学习");   
+    	System.out.println("我们都在黑马程序员学习");
     }
 }
 ```
@@ -348,9 +348,9 @@ public static void  main(String[] args){
 
 ### 2.2.4 实例方法及其访问
 
-无static修饰的成员方法属于每个对象的，这个成员方法也叫做**实例方法**。
+无 static 修饰的成员方法属于每个对象的，这个成员方法也叫做**实例方法**。
 
-**需要注意的是**：实例方法是属于每个对象，必须创建类的对象才可以访问。  
+**需要注意的是**：实例方法是属于每个对象，必须创建类的对象才可以访问。
 
 **格式：对象.实例方法**
 
@@ -370,14 +370,14 @@ public class Student {
         System.out.println("学生睡觉");
     }
     public static void study(){
-        
+
     }
 }
 ```
 
 ```java
 public static void main(String[] args){
-    // 创建对象 
+    // 创建对象
     Student stu = new Student ;
     stu.name = "徐干";
     // Student.sleep();// 报错，必须用对象访问。
@@ -390,18 +390,18 @@ public static void main(String[] args){
 
 1.当 `static` 修饰成员变量或者成员方法时，该变量称为**静态变量**，该方法称为**静态方法**。该类的每个对象都**共享**同一个类的静态变量和静态方法。任何对象都可以更改该静态变量的值或者访问静态方法。但是不推荐这种方式去访问。因为静态变量或者静态方法直接通过类名访问即可，完全没有必要用对象去访问。
 
-2.无static修饰的成员变量或者成员方法，称为**实例变量，实例方法**，实例变量和实例方法必须创建类的对象，然后通过对象来访问。
+2.无 static 修饰的成员变量或者成员方法，称为**实例变量，实例方法**，实例变量和实例方法必须创建类的对象，然后通过对象来访问。
 
-3.static修饰的成员属于类，会存储在静态区，是随着类的加载而加载的，且只加载一次，所以只有一份，节省内存。存储于一块固定的内存区域（静态区），所以，可以直接被类名调用。它优先于对象存在，所以，可以被所有对象共享。
+3.static 修饰的成员属于类，会存储在静态区，是随着类的加载而加载的，且只加载一次，所以只有一份，节省内存。存储于一块固定的内存区域（静态区），所以，可以直接被类名调用。它优先于对象存在，所以，可以被所有对象共享。
 
-4.无static修饰的成员，是属于对象，对象有多少个，他们就会出现多少份。所以必须由对象调用。
+4.无 static 修饰的成员，是属于对象，对象有多少个，他们就会出现多少份。所以必须由对象调用。
 
-
-# 第三章 继承 
+# 第三章 继承
 
 ## 3.1 概述
 
 ### 3.1.1 引入
+
 假如我们要定义如下类:
 学生类,老师类和工人类，分析如下。
 
@@ -431,11 +431,14 @@ public static void main(String[] args){
 **继承**：就是子类继承父类的**属性**和**行为**，使得子类对象可以直接具有与父类相同的属性、相同的行为。子类可以直接访问父类中的**非私有**的属性和行为。
 
 ### 3.1.3 继承的好处
+
 1. 提高**代码的复用性**（减少代码冗余，相同代码重复利用）。
 2. 使类与类之间产生了关系。
 
 ## 3.2 继承的格式
+
 通过 `extends` 关键字，可以声明一个子类继承另外一个父类，定义格式如下：
+
 ```java
 class 父类 {
 	...
@@ -446,9 +449,10 @@ class 子类 extends 父类 {
 }
 ```
 
-**需要注意：Java是单继承的，一个类只能继承一个直接父类，跟现实世界很像，但是Java中的子类是更加强大的。**
+**需要注意：Java 是单继承的，一个类只能继承一个直接父类，跟现实世界很像，但是 Java 中的子类是更加强大的。**
 
 ## 3.3 继承案例
+
 ### 3.3.1 案例
 
 请使用继承定义以下类:
@@ -473,75 +477,75 @@ class 子类 extends 父类 {
 
 ### 3.3.3 案例代码实现
 
-**1.父类Human类**
+**1.父类 Human 类**
 
-  ```java
- public class Human {
-    // 合理隐藏
-    private String name ;
-    private int age ;
-	
-    // 合理暴露
-    public String getName() {
-        return name;
-    }
+```java
+public class Human {
+  // 合理隐藏
+  private String name ;
+  private int age ;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  // 合理暴露
+  public String getName() {
+      return name;
+  }
 
-    public int getAge() {
-        return age;
-    }
+  public void setName(String name) {
+      this.name = name;
+  }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
- }
-  ```
+  public int getAge() {
+      return age;
+  }
 
-**2.子类Teacher类**
-
-  ```java
-public class Teacher extends Human {
-    // 工资
-    private double salary ;
-    
-    // 特有方法
-    public void teach(){
-        System.out.println("老师在认真教技术！")；
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
+  public void setAge(int age) {
+      this.age = age;
+  }
 }
-  ```
+```
 
-**3.子类Student类**
+**2.子类 Teacher 类**
 
-  ```java
+```java
+public class Teacher extends Human {
+  // 工资
+  private double salary ;
+
+  // 特有方法
+  public void teach(){
+      System.out.println("老师在认真教技术！")；
+  }
+
+  public double getSalary() {
+      return salary;
+  }
+
+  public void setSalary(double salary) {
+      this.salary = salary;
+  }
+}
+```
+
+**3.子类 Student 类**
+
+```java
 public class Student extends Human{
- 
+
 }
-  ```
+```
 
-**4.子类BanZhuren类**
+**4.子类 BanZhuren 类**
 
-```java 
+```java
 public class Teacher extends Human {
     // 工资
     private double salary ;
-    
+
        // 特有方法
     public void admin(){
         System.out.println("班主任强调纪律问题！")；
     }
-    
+
     public double getSalary() {
         return salary;
     }
@@ -552,42 +556,41 @@ public class Teacher extends Human {
 }
 ```
 
-
 **5.测试类**
 
-  ```java
-  public class Test {
-      public static void main(String[] args) {
-          Teacher dlei = new Teacher();
-          dlei.setName("播仔");
-          dlei.setAge("31");
-          dlei.setSalary(1000.99);
-          System.out.println(dlei.getName());
-          System.out.println(dlei.getAge());
-          System.out.println(dlei.getSalary());
-          dlei.teach();
-          
-          BanZhuRen linTao = new BanZhuRen();
-          linTao.setName("灵涛");
-          linTao.setAge("28");
-          linTao.setSalary(1000.99);
-          System.out.println(linTao.getName());
-          System.out.println(linTao.getAge());
-          System.out.println(linTao.getSalary());
-          linTao.admin();
+```java
+public class Test {
+    public static void main(String[] args) {
+        Teacher dlei = new Teacher();
+        dlei.setName("播仔");
+        dlei.setAge("31");
+        dlei.setSalary(1000.99);
+        System.out.println(dlei.getName());
+        System.out.println(dlei.getAge());
+        System.out.println(dlei.getSalary());
+        dlei.teach();
 
-          Student xugan = new Student();
-          xugan.setName("播仔");
-          xugan.setAge("31");
-          //xugan.setSalary(1000.99); // xugan没有薪水属性，报错！
-          System.out.println(xugan.getName());
-          System.out.println(xugan.getAge());
+        BanZhuRen linTao = new BanZhuRen();
+        linTao.setName("灵涛");
+        linTao.setAge("28");
+        linTao.setSalary(1000.99);
+        System.out.println(linTao.getName());
+        System.out.println(linTao.getAge());
+        System.out.println(linTao.getSalary());
+        linTao.admin();
+
+        Student xugan = new Student();
+        xugan.setName("播仔");
+        xugan.setAge("31");
+        //xugan.setSalary(1000.99); // xugan没有薪水属性，报错！
+        System.out.println(xugan.getName());
+        System.out.println(xugan.getAge());
 
 
 
-      }
-  }
-  ```
+    }
+}
+```
 
 ### 3.3.4 小结
 
@@ -603,9 +606,10 @@ public class Teacher extends Human {
 
 **子类不能继承父类的构造方法。**
 
-**值得注意的是子类可以继承父类的私有成员（成员变量，方法），只是子类无法直接访问而已，可以通过getter/setter方法访问父类的private成员变量。**
+**值得注意的是子类可以继承父类的私有成员（成员变量，方法），只是子类无法直接访问而已，可以通过 getter/setter 方法访问父类的 private 成员变量。**
 
 ### 3.4.1 演示代码
+
 ```java
 public class Demo03 {
     public static void main(String[] args) {
@@ -661,7 +665,7 @@ class Fu {
 class Zi extends Fu {
 	// Zi中的成员变量
 	int num2 = 6;
-  
+
 	// Zi中的成员方法
 	public void show() {
 		// 访问父类中的num
@@ -673,9 +677,9 @@ class Zi extends Fu {
 class Demo04 {
 	public static void main(String[] args) {
         // 创建子类对象
-		Zi z = new Zi(); 
+		Zi z = new Zi();
       	// 调用子类中的show方法
-		z.show();  
+		z.show();
 	}
 }
 
@@ -696,7 +700,7 @@ class Fu1 {
 class Zi1 extends Fu1 {
 	// Zi中的成员变量
 	int num = 6;
-  
+
 	public void show() {
 		// 访问父类中的num
 		System.out.println("Fu num=" + num);
@@ -707,9 +711,9 @@ class Zi1 extends Fu1 {
 class Demo04 {
 	public static void main(String[] args) {
       	// 创建子类对象
-		Zi1 z = new Zi1(); 
+		Zi1 z = new Zi1();
       	// 调用子类中的show方法
-		z1.show(); 
+		z1.show();
 	}
 }
 演示结果：
@@ -717,13 +721,13 @@ Fu num = 6
 Zi num = 6
 ```
 
-子父类中出现了同名的成员变量时，子类会优先访问自己对象中的成员变量。如果此时想访问父类成员变量如何解决呢？我们可以使用super关键字。
+子父类中出现了同名的成员变量时，子类会优先访问自己对象中的成员变量。如果此时想访问父类成员变量如何解决呢？我们可以使用 super 关键字。
 
-### 3.5.3  super访问父类成员变量
+### 3.5.3 super 访问父类成员变量
 
 子父类中出现了同名的成员变量时，在子类中需要访问父类中非私有成员变量时，需要使用`super` 关键字，修饰父类成员变量，类似于之前学过的 `this` 。
 
-需要注意的是：**super代表的是父类对象的引用，this代表的是当前对象的引用。**
+需要注意的是：**super 代表的是父类对象的引用，this 代表的是当前对象的引用。**
 
 **使用格式：**
 
@@ -742,10 +746,10 @@ class Fu {
 class Zi extends Fu {
 	// Zi中的成员变量
 	int num = 6;
-  
+
 	public void show() {
         int num = 1;
-      
+
         // 访问方法中的num
         System.out.println("method num=" + num);
         // 访问子类中的num
@@ -758,9 +762,9 @@ class Zi extends Fu {
 class Demo04 {
 	public static void main(String[] args) {
       	// 创建子类对象
-		Zi1 z = new Zi1(); 
+		Zi1 z = new Zi1();
       	// 调用子类中的show方法
-		z1.show(); 
+		z1.show();
 	}
 }
 
@@ -770,7 +774,7 @@ Zi num=6
 Fu num=5
 ```
 
-> 小贴士：Fu 类中的成员变量是非私有的，子类中可以直接访问。若Fu 类中的成员变量私有了，子类是不能直接访问的。通常编码时，我们遵循封装的原则，使用private修饰成员变量，那么如何访问父类的私有成员变量呢？对！可以在父类中提供公共的getXxx方法和setXxx方法。
+> 小贴士：Fu 类中的成员变量是非私有的，子类中可以直接访问。若 Fu 类中的成员变量私有了，子类是不能直接访问的。通常编码时，我们遵循封装的原则，使用 private 修饰成员变量，那么如何访问父类的私有成员变量呢？对！可以在父类中提供公共的 getXxx 方法和 setXxx 方法。
 
 ## 3.6 继承后的特点—成员方法
 
@@ -795,7 +799,7 @@ public  class Demo05 {
 	public static void main(String[] args) {
 		Zi z = new Zi();
      	//子类中没有show方法，但是可以找到父类方法去执行
-		z.show(); 
+		z.show();
 		z.show2();
 	}
 }
@@ -852,7 +856,7 @@ public class Animal  {
 }
 ```
 
-然后定义一个猫类，猫可能认为父类cry()方法不能满足自己的需求
+然后定义一个猫类，猫可能认为父类 cry()方法不能满足自己的需求
 
 代码如下：
 
@@ -875,17 +879,17 @@ public class Test {
 }
 ```
 
-### 3.7.2 @Override重写注解
+### 3.7.2 @Override 重写注解
 
-* @Override:注解，重写注解校验！
+- @Override:注解，重写注解校验！
 
-* 这个注解标记的方法，就说明这个方法必须是重写父类的方法，否则编译阶段报错。
+- 这个注解标记的方法，就说明这个方法必须是重写父类的方法，否则编译阶段报错。
 
-* 建议重写都加上这个注解，一方面可以提高代码的可读性，一方面可以防止重写出错！
+- 建议重写都加上这个注解，一方面可以提高代码的可读性，一方面可以防止重写出错！
 
   加上后的子类代码形式如下：
 
-  ``` java
+  ```java
   public class Cat extends Animal {
        // 声明不变，重新实现
       // 方法名称与父类全部一样，只是方法体中的功能重写写了！
@@ -896,7 +900,6 @@ public class Test {
   }
   ```
 
-
 ### 3.7.3 注意事项
 
 1. 方法重写是发生在子父类之间的关系。
@@ -904,6 +907,7 @@ public class Test {
 3. 子类方法覆盖父类方法，返回值类型、函数名和参数列表都要一模一样。
 
 ## 3.8 继承后的特点—构造方法
+
 ### 3.8.1 引入
 
 当类之间产生了关系，其中各类中的构造方法，又产生了哪些影响呢？
@@ -926,6 +930,7 @@ public class Test {
    成员方法: 吃饭
 
 代码如下：
+
 ```java
 class Person {
     private String name;
@@ -945,10 +950,10 @@ class Student extends Person {
         //super(); // 调用父类无参,默认就存在，可以不写，必须再第一行
         System.out.println("子类无参");
     }
-    
+
      public Student(double score) {
         //super();  // 调用父类无参,默认就存在，可以不写，必须再第一行
-        this.score = score;    
+        this.score = score;
         System.out.println("子类有参");
      }
 
@@ -972,16 +977,16 @@ public class Demo07 {
 
 ### 3.8.3 小结
 
-* 子类构造方法执行的时候，都会在第一行默认先调用父类无参数构造方法一次。
-* 子类构造方法的第一行都隐含了一个**super()**去调用父类无参数构造方法，**super()**可以省略不写。
+- 子类构造方法执行的时候，都会在第一行默认先调用父类无参数构造方法一次。
+- 子类构造方法的第一行都隐含了一个**super()**去调用父类无参数构造方法，**super()**可以省略不写。
 
-## 3.9 super(...)和this(...)
+## 3.9 super(...)和 this(...)
 
-### 3.9.1  引入
+### 3.9.1 引入
 
 请看上节中的如下案例：
 
-```java 
+```java
 class Person {
     private String name;
     private int age;
@@ -1000,10 +1005,10 @@ class Student extends Person {
         //super(); // 调用父类无参构造方法,默认就存在，可以不写，必须再第一行
         System.out.println("子类无参");
     }
-    
+
      public Student(double score) {
         //super();  // 调用父类无参构造方法,默认就存在，可以不写，必须再第一行
-        this.score = score;    
+        this.score = score;
         System.out.println("子类有参");
      }
       // getter/setter省略
@@ -1020,17 +1025,17 @@ public class Demo07 {
 }
 ```
 
-我们发现，子类有参数构造方法只是初始化了自己对象中的成员变量score，而父类中的成员变量name和age依然是没有数据的，怎么解决这个问题呢，我们可以借助与super(...)去调用父类构造方法，以便初始化继承自父类对象的name和age.
+我们发现，子类有参数构造方法只是初始化了自己对象中的成员变量 score，而父类中的成员变量 name 和 age 依然是没有数据的，怎么解决这个问题呢，我们可以借助与 super(...)去调用父类构造方法，以便初始化继承自父类对象的 name 和 age.
 
-### 3.9.2 super和this的用法格式
+### 3.9.2 super 和 this 的用法格式
 
-super和this完整的用法如下，其中this，super访问成员我们已经接触过了。
+super 和 this 完整的用法如下，其中 this，super 访问成员我们已经接触过了。
 
 ```java
 this.成员变量    	--    本类的
 super.成员变量    	--    父类的
 
-this.成员方法名()  	--    本类的    
+this.成员方法名()  	--    本类的
 super.成员方法名()   --    父类的
 ```
 
@@ -1053,7 +1058,7 @@ class Person {
     public Person() {
         System.out.println("父类无参");
     }
-    
+
     public Person(String name , int age){
         this.name = name ;
         this.age = age ;
@@ -1069,10 +1074,10 @@ class Student extends Person {
         //super(); // 调用父类无参构造方法,默认就存在，可以不写，必须再第一行
         System.out.println("子类无参");
     }
-    
+
      public Student(String name ， int age，double score) {
         super(name ,age);// 调用父类有参构造方法Person(String name , int age)初始化name和age
-        this.score = score;    
+        this.score = score;
         System.out.println("子类有参");
      }
       // getter/setter省略
@@ -1091,7 +1096,7 @@ public class Demo07 {
 
 **注意：**
 
-**子类的每个构造方法中均有默认的super()，调用父类的空参构造。手动调用父类构造会覆盖默认的super()。**
+**子类的每个构造方法中均有默认的 super()，调用父类的空参构造。手动调用父类构造会覆盖默认的 super()。**
 
 **super() 和 this() 都必须是在构造方法的第一行，所以不能同时出现。**
 
@@ -1101,17 +1106,16 @@ super(..)是根据参数去确定调用父类哪个构造方法的。
 
 **父类空间优先于子类对象产生**
 
-在每次创建子类对象时，先初始化父类空间，再创建其子类对象本身。目的在于子类对象中包含了其对应的父类空间，便可以包含其父类的成员，如果父类成员非private修饰，则子类可以随意使用父类成员。代码体现在子类的构造七调用时，一定先调用父类的构造方法。理解图解如下：
+在每次创建子类对象时，先初始化父类空间，再创建其子类对象本身。目的在于子类对象中包含了其对应的父类空间，便可以包含其父类的成员，如果父类成员非 private 修饰，则子类可以随意使用父类成员。代码体现在子类的构造七调用时，一定先调用父类的构造方法。理解图解如下：
 
 ![](/tupian/2.jpg)
-
-
 
 ### 3.9.5 this(...)用法演示
 
 this(...)
- *    默认是去找本类中的其他构造方法，根据参数来确定具体调用哪一个构造方法。
- *    为了借用其他构造方法的功能。
+
+- 默认是去找本类中的其他构造方法，根据参数来确定具体调用哪一个构造方法。
+- 为了借用其他构造方法的功能。
 
 ```java
 package com.itheima._08this和super调用构造方法;
@@ -1174,61 +1178,64 @@ class Student{
 
 ### 3.9.6 小结
 
-* **子类的每个构造方法中均有默认的super()，调用父类的空参构造。手动调用父类构造会覆盖默认的super()。**
+- **子类的每个构造方法中均有默认的 super()，调用父类的空参构造。手动调用父类构造会覆盖默认的 super()。**
 
-* **super() 和 this() 都必须是在构造方法的第一行，所以不能同时出现。**
+- **super() 和 this() 都必须是在构造方法的第一行，所以不能同时出现。**
 
-* **super(..)和this(...)是根据参数去确定调用父类哪个构造方法的。**
-* super(..)可以调用父类构造方法初始化继承自父类的成员变量的数据。
-* this(..)可以调用本类中的其他构造方法。
+- **super(..)和 this(...)是根据参数去确定调用父类哪个构造方法的。**
+- super(..)可以调用父类构造方法初始化继承自父类的成员变量的数据。
+- this(..)可以调用本类中的其他构造方法。
 
 ## 3.10 继承的特点
-1. Java只支持单继承，不支持多继承。
-  ```java
+
+1. Java 只支持单继承，不支持多继承。
+
+```java
 // 一个类只能有一个父类，不可以有多个父类。
 class A {}
 class B {}
 class C1 extends A {} // ok
 // class C2 extends A, B {} // error
-  ```
+```
 
 2. 一个类可以有多个子类。
-  ```java
+
+```java
 // A可以有多个子类
 class A {}
 class C1 extends A {}
 class C2 extends  A {}
-  ```
+```
 
 3. 可以多层继承。
-  ```java
+
+```java
 class A {}
 class C1 extends A {}
 class D extends C1 {}
-  ```
-  > 顶层父类是Object类。所有的类默认继承Object，作为父类。
+```
+
+> 顶层父类是 Object 类。所有的类默认继承 Object，作为父类。
 
 ## 4. 关于今天知识的小结：
 
-会写一个继承结构下的标准Javabean即可
+会写一个继承结构下的标准 Javabean 即可
 
 需求：
 
-​	猫：属性，姓名，年龄，颜色
+​ 猫：属性，姓名，年龄，颜色
 
-​	狗：属性，姓名，年龄，颜色，吼叫
+​ 狗：属性，姓名，年龄，颜色，吼叫
 
- 分享书写技巧：
+分享书写技巧：
 
-​        1.在大脑中要区分谁是父，谁是子
+​ 1.在大脑中要区分谁是父，谁是子
 
-​        2.把共性写到父类中，独有的东西写在子类中
+​ 2.把共性写到父类中，独有的东西写在子类中
 
-​        3.开始编写标准Javabean（从上往下写）
+​ 3.开始编写标准 Javabean（从上往下写）
 
-​        4.在测试类中，创建对象并赋值调用
-
-
+​ 4.在测试类中，创建对象并赋值调用
 
 代码示例：
 
@@ -1336,17 +1343,4 @@ public class Demo {
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## 本篇文章代码由[黑马程序员](https://space.bilibili.com/37974444?spm_id_from=333.337.search-card.all.click)提供

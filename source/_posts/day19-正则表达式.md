@@ -931,3 +931,5 @@ System.out.println("41080119930228457x".matches(regex2));
 身份证号码，严格校验：
 		[1-9]\\d{5}(18|19|20)\\d{2}(0[1-9]|1[0-2])(0[1-9|[12])\\d|3[01])\\d{3}[\\dXx]
 ```
+
+## 本篇文章代码由[黑马程序员](https://space.bilibili.com/37974444?spm_id_from=333.337.search-card.all.click)提供

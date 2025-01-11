@@ -1000,3 +1000,5 @@ public class ImmutableDemo4 {
 - 使用说明
 
   Lambda 表达式被构造器替代的时候，它的形式参数全部传递给构造器作为参数
+
+## 本篇文章代码由[黑马程序员](https://space.bilibili.com/37974444?spm_id_from=333.337.search-card.all.click)提供
