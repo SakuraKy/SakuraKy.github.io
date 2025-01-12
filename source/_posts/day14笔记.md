@@ -583,7 +583,7 @@ public class Test {
 
 在 IDEA 项目中，建包的操作如下：
 
-![](img/aaa.jpg)
+![](/tupian/aaa.jpg)
 
 **包名的命名规范**：
 
