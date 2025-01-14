@@ -7,8 +7,6 @@ categories: java
 photos: /tupian/j17.jpg
 ---
 
-# day04【常用 API】
-
 ## 今日内容
 
 - JDK7 时间相关类
