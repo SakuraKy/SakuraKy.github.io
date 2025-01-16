@@ -166,7 +166,7 @@ mid=low+(key-a[low])/(a[high]-a[low])\*(high-low)，
 
 然后我们会发现，随着斐波那契数列的递增，前后两个数的比值会越来越接近 0.618，利用这个特性，我们就可以将黄金比例运用到查找技术中。
 
-![img](https://img-blog.csdn.net/20150323100632467?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hlbmJvMjAzMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![img](/tupian/feibonaqie.jpg)
 
 基本思想：也是二分查找的一种提升算法，通过运用黄金比例的概念在数列中选择查找点进行查找，提高查找效率。同样地，斐波那契查找也属于一种有序查找算法。
 
