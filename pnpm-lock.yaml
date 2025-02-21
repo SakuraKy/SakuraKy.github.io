@@ -14,6 +14,9 @@ importers:
       hexo:
         specifier: ^7.0.0
         version: 7.3.0(chokidar@3.6.0)
+      hexo-analytics:
+        specifier: ^0.1.1
+        version: 0.1.1
       hexo-deployer-git:
         specifier: ^4.0.0
         version: 4.0.0(chokidar@3.6.0)
@@ -434,6 +437,9 @@ packages:
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
+
+  hexo-analytics@0.1.1:
+    resolution: {integrity: sha512-WJK/HowOOpmR8MDQN8L42+5635qYRqtVPn64xPCd3mSN0HYJ+9HbizjoDUDb2ll3Zlb8MLqix8GF5N7fgVbK1w==}
 
   hexo-cli@4.3.2:
     resolution: {integrity: sha512-druJeBgLpG9ncDS5AhBHdAXk0G4CFj8Qes09pApyZ6bR+nJW1JYiDMuilhudaKDdq+1l49jWXVTidkcb7p0Jbw==}
@@ -1437,6 +1443,8 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
+
+  hexo-analytics@0.1.1: {}
 
   hexo-cli@4.3.2:
     dependencies:

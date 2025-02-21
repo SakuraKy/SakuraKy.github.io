@@ -72,3 +72,7 @@ sitemap:
   rel: false
   tags: true
   categories: true
+analytics:
+  google_analytics:
+    enable: true
+    measurement_id: G-NHEYCXHN4K
