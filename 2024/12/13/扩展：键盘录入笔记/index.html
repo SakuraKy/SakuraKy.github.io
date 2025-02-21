@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHEYCXHN4K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-NHEYCXHN4K');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end -->
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>day09-扩展键盘录入 | SakuraKy的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="一，键盘录入涉及到的方法如下：​ next（）、nextLine（）、nextInt（）、nextDouble（）。 1）next（）、nextLine（）：可以接受任意数据，但是都会返回一个字符串。 比如：键盘录入 abc，那么会把 abc 看做字符串返回。 ​ 键盘录入 123，那么会把 123 看做字符串返回。 代码示例：123Scanner sc &#x3D; new Scanner(System.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day09-扩展键盘录入">
+<meta property="og:url" content="https://www.sakuraky.cn/2024/12/13/%E6%89%A9%E5%B1%95%EF%BC%9A%E9%94%AE%E7%9B%98%E5%BD%95%E5%85%A5%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="SakuraKy的博客">
+<meta property="og:description" content="一，键盘录入涉及到的方法如下：​ next（）、nextLine（）、nextInt（）、nextDouble（）。 1）next（）、nextLine（）：可以接受任意数据，但是都会返回一个字符串。 比如：键盘录入 abc，那么会把 abc 看做字符串返回。 ​ 键盘录入 123，那么会把 123 看做字符串返回。 代码示例：123Scanner sc &#x3D; new Scanner(System.">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.sakuraky.cn/tupian/j09.jpg">
+<meta property="article:published_time" content="2024-12-13T07:29:00.000Z">
+<meta property="article:modified_time" content="2025-02-21T11:22:23.303Z">
+<meta property="article:author" content="SakuraKy">
+<meta property="article:tag" content="练习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.sakuraky.cn/tupian/j09.jpg">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/tupian/hengbantupian.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>SakuraKy的博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/tupian/touxiang.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">SakuraKy </div>
+      <div class="dot"></div>
+      <div class="subtitle">Genius is an infinite capacity for taking pains. </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com/Sakurak_ky" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://steamcommunity.com/profiles/76561199024245019/" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/SakuraKy" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://t.me/sakuraky" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/517866344" title="BiliBili"><i class="fa-brands fa-bilibili"></i></a>
+        
+          <a class="link-btn" href="mailto:sakuraky.shen@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">分类</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">
+                算法
+                <div class="category-count">4</div>
+            </a>
+        
+            <a class="category-link" href="/categories/java/">
+                java
+                <div class="category-count">35</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Docker/">
+                Docker
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/git/">
+                git
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">标签</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/API/" rel="tag">API</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/idea%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="tag">idea安装及使用</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E5%8A%A0%E5%BC%BA/" rel="tag">基础加强</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" rel="tag">学生管理系统</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%96%B9%E6%B3%95/" rel="tag">方法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" rel="tag">流程控制语句</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="tag">环境变量</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag">练习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%AF%AD%E6%B3%95/" rel="tag">语法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-扩展：键盘录入笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm7ep05j2004jsnw548h8f74q">
+        <img src="/tupian/j09.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        day09-扩展键盘录入
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-12-13T07:29:00.000Z" itemprop="datePublished">2024-12-13</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/java/">java</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            2.6k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag">练习</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="一，键盘录入涉及到的方法如下："><a href="#一，键盘录入涉及到的方法如下：" class="headerlink" title="一，键盘录入涉及到的方法如下："></a>一，键盘录入涉及到的方法如下：</h1><p>​ next（）、nextLine（）、nextInt（）、nextDouble（）。</p>
+<h2 id="1）next（）、nextLine（）："><a href="#1）next（）、nextLine（）：" class="headerlink" title="1）next（）、nextLine（）："></a>1）next（）、nextLine（）：</h2><p>可以接受任意数据，但是都会返回一个字符串。</p>
+<p>比如：键盘录入 abc，那么会把 abc 看做字符串返回。</p>
+<p>​ 键盘录入 123，那么会把 123 看做字符串返回。</p>
+<h3 id="代码示例："><a href="#代码示例：" class="headerlink" title="代码示例："></a>代码示例：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> sc.next();<span class="comment">//录入的所有数据都会看做是字符串</span></span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码示例：-1"><a href="#代码示例：-1" class="headerlink" title="代码示例："></a>代码示例：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> sc.nextLine();<span class="comment">//录入的所有数据都会看做是字符串</span></span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2）nextInt（）："><a href="#2）nextInt（）：" class="headerlink" title="2）nextInt（）："></a>2）nextInt（）：</h2><p>​ 只能接受整数。</p>
+<p>比如：键盘录入 123，那么会把 123 当做 int 类型的整数返回。</p>
+<p>​ 键盘录入小数或者其他字母，就会报错。</p>
+<h3 id="代码示例：-2"><a href="#代码示例：-2" class="headerlink" title="代码示例："></a>代码示例：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">int</span> <span class="variable">s</span> <span class="operator">=</span> sc.nextInt();<span class="comment">//只能录入整数</span></span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3）nextDouble（）："><a href="#3）nextDouble（）：" class="headerlink" title="3）nextDouble（）："></a>3）nextDouble（）：</h2><p>​ 能接收整数和小数，但是都会看做小数返回。</p>
+<p>​ 录入字母会报错。</p>
+<h3 id="代码示例：-3"><a href="#代码示例：-3" class="headerlink" title="代码示例："></a>代码示例：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> sc.nextDouble();<span class="comment">//录入的整数，小数都会看做小数。</span></span><br><span class="line">						<span class="comment">//录入字母会报错</span></span><br><span class="line">System.out.println(d);</span><br></pre></td></tr></table></figure>
+
+<h1 id="二，方法底层细节-："><a href="#二，方法底层细节-：" class="headerlink" title="二，方法底层细节 ："></a>二，方法底层细节 ：</h1><h3 id="第一个细节："><a href="#第一个细节：" class="headerlink" title="第一个细节："></a>第一个细节：</h3><p>next（），nextInt（），nextDouble（）在接收数据的时候，会遇到空格，回车，制表符其中一个就会停止接收数据。</p>
+<h4 id="代码示例：-4"><a href="#代码示例：-4" class="headerlink" title="代码示例："></a>代码示例：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> sc.nextDouble();</span><br><span class="line">System.out.println(d);</span><br><span class="line"><span class="comment">//键盘录入：1.1 2.2//注意录入的时候1.1和2.2之间加空格隔开。</span></span><br><span class="line"><span class="comment">//此时控制台打印1.1</span></span><br><span class="line"><span class="comment">//表示nextDouble方法在接收数据的时候，遇到空格就停止了，后面的本次不接收。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">System.out.println(i);</span><br><span class="line"><span class="comment">//键盘录入：1 2//注意录入的时候1和2之间加空格隔开。</span></span><br><span class="line"><span class="comment">//此时控制台打印1</span></span><br><span class="line"><span class="comment">//表示nextInt方法在接收数据的时候，遇到空格就停止了，后面的本次不接收。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> sc.next();</span><br><span class="line">System.out.println(s);</span><br><span class="line"><span class="comment">//键盘录入：a b//注意录入的时候a和b之间加空格隔开。</span></span><br><span class="line"><span class="comment">//此时控制台打印a</span></span><br><span class="line"><span class="comment">//表示next方法在接收数据的时候，遇到空格就停止了，后面的本次不接收。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第二个细节："><a href="#第二个细节：" class="headerlink" title="第二个细节："></a>第二个细节：</h3><p>next（），nextInt（），nextDouble（）在接收数据的时候，会遇到空格，回车，制表符其中一个就会停止接收数据。但是这些符号 + 后面的数据还在内存中并没有接收。如果后面还有其他键盘录入的方法，会自动将这些数据接收。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> sc.next();</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> sc.next();</span><br><span class="line">System.out.println(s1);</span><br><span class="line">System.out.println(s2);</span><br><span class="line"><span class="comment">//此时值键盘录入一次a b(注意a和b之间用空格隔开)</span></span><br><span class="line"><span class="comment">//那么第一个next();会接收a，a后面是空格，那么就停止，所以打印s1是a</span></span><br><span class="line"><span class="comment">//但是空格+b还在内存中。</span></span><br><span class="line"><span class="comment">//第二个next会去掉前面的空格，只接收b</span></span><br><span class="line"><span class="comment">//所以第二个s2打印出来是b</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第三个细节："><a href="#第三个细节：" class="headerlink" title="第三个细节："></a>第三个细节：</h3><p>nextLine（）方法是把一整行全部接收完毕。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">System.out.println(s);</span><br><span class="line"><span class="comment">//键盘录入a b(注意a和b之间用空格隔开)</span></span><br><span class="line"><span class="comment">//那么nextLine不会过滤前面和后面的空格，会把这一整行数据全部接收完毕。</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="三、混用引起的后果"><a href="#三、混用引起的后果" class="headerlink" title="三、混用引起的后果"></a>三、混用引起的后果</h1><p>上面说的两套键盘录入不能混用，如果混用会有严重的后果。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);<span class="comment">//①</span></span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> sc.nextInt();<span class="comment">//②</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> sc.nextLine();<span class="comment">//③</span></span><br><span class="line">System.out.println(i);<span class="comment">//④</span></span><br><span class="line">System.out.println(s);<span class="comment">//⑤</span></span><br></pre></td></tr></table></figure>
+
+<p>当代码运行到第二行，会让我们键盘录入，此时录入 123。</p>
+<p>但是实际上我们录的是 123+回车。</p>
+<p>而 nextInt 是遇到空格，回车，制表符都会停止。</p>
+<p>所以 nextInt 只能接受 123，回车还在内存中没有被接收。</p>
+<p>此时就被 nextLine 接收了。</p>
+<p>所以，如果混用就会导致 nextLine 接收不到数据。</p>
+<h1 id="四、结论（如何使用）"><a href="#四、结论（如何使用）" class="headerlink" title="四、结论（如何使用）"></a>四、结论（如何使用）</h1><p>键盘录入分为两套：</p>
+<ul>
+<li>next（）、nextInt（）、nextDouble（）这三个配套使用。</li>
+</ul>
+<p>如果用了这三个其中一个，就不要用 nextLine（）。</p>
+<ul>
+<li>nextLine（）单独使用。</li>
+</ul>
+<p>如果想要整数，那么先接收，再使用 Integer.parseInt 进行类型转换。</p>
+<h3 id="代码示例：-5"><a href="#代码示例：-5" class="headerlink" title="代码示例："></a>代码示例：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> sc.next();<span class="comment">//键盘录入123</span></span><br><span class="line">System.out.println(<span class="string">&quot;此时为字符串&quot;</span> + s);<span class="comment">//此时123是字符串</span></span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> sc.nextInt();<span class="comment">//键盘录入123</span></span><br><span class="line">System.out.println(<span class="string">&quot;此时为整数：&quot;</span> + i);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> sc.nextLine();<span class="comment">//键盘录入123</span></span><br><span class="line">System.out.println(<span class="string">&quot;此时为字符串&quot;</span> + s);<span class="comment">//此时123是字符串</span></span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> Integer.parseInt(s);<span class="comment">//想要整数再进行转换</span></span><br><span class="line">System.out.println(<span class="string">&quot;此时为整数：&quot;</span> + i);</span><br></pre></td></tr></table></figure>
+
+<h2 id="本篇文章代码由黑马程序员提供"><a href="#本篇文章代码由黑马程序员提供" class="headerlink" title="本篇文章代码由黑马程序员提供"></a>本篇文章代码由<a target="_blank" rel="noopener" href="https://space.bilibili.com/37974444?spm_id_from=333.337.search-card.all.click">黑马程序员</a>提供</h2>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2024/12/13/day10-%E5%B8%B8%E7%94%A8API/"
+      title="day10-常用API"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        day10-常用API
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/12/13/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%BC%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0/"
+      title="day09-面向对象综合练习"
+     >
+
+    <p class="title-text">
+      
+        day09-面向对象综合练习
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2025 SakuraKy<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>

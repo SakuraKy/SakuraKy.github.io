@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHEYCXHN4K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-NHEYCXHN4K');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end -->
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>day04-流程控制语句 | SakuraKy的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="第一章 流程控制语句在一个程序执行的过程中，各条语句的执行顺序对程序的结果是有直接影响的。所以，我们必须清楚每条语句的执行流程。而且，很多时候要通过控制语句的执行顺序来实现我们想要的功能。 1.1 流程控制语句分类​ 顺序结构 ​ 判断和选择结构(if, switch) ​ 循环结构(for, while, do…while) 1.2 顺序结构顺序结构是程序中最简单最基本的流程控制，没有特定的语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day04-流程控制语句">
+<meta property="og:url" content="https://www.sakuraky.cn/2024/12/12/day04-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/index.html">
+<meta property="og:site_name" content="SakuraKy的博客">
+<meta property="og:description" content="第一章 流程控制语句在一个程序执行的过程中，各条语句的执行顺序对程序的结果是有直接影响的。所以，我们必须清楚每条语句的执行流程。而且，很多时候要通过控制语句的执行顺序来实现我们想要的功能。 1.1 流程控制语句分类​ 顺序结构 ​ 判断和选择结构(if, switch) ​ 循环结构(for, while, do…while) 1.2 顺序结构顺序结构是程序中最简单最基本的流程控制，没有特定的语法">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.sakuraky.cn/tupian/j04.jpg">
+<meta property="article:published_time" content="2024-12-12T08:38:00.000Z">
+<meta property="article:modified_time" content="2025-02-21T11:22:23.298Z">
+<meta property="article:author" content="SakuraKy">
+<meta property="article:tag" content="流程控制语句">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.sakuraky.cn/tupian/j04.jpg">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/tupian/hengbantupian.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>SakuraKy的博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/tupian/touxiang.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">SakuraKy </div>
+      <div class="dot"></div>
+      <div class="subtitle">Genius is an infinite capacity for taking pains. </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com/Sakurak_ky" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://steamcommunity.com/profiles/76561199024245019/" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/SakuraKy" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://t.me/sakuraky" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/517866344" title="BiliBili"><i class="fa-brands fa-bilibili"></i></a>
+        
+          <a class="link-btn" href="mailto:sakuraky.shen@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">分类</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">
+                算法
+                <div class="category-count">4</div>
+            </a>
+        
+            <a class="category-link" href="/categories/java/">
+                java
+                <div class="category-count">35</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Docker/">
+                Docker
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/git/">
+                git
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">标签</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/API/" rel="tag">API</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/idea%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="tag">idea安装及使用</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E5%8A%A0%E5%BC%BA/" rel="tag">基础加强</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" rel="tag">学生管理系统</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%96%B9%E6%B3%95/" rel="tag">方法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" rel="tag">流程控制语句</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="tag">环境变量</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag">练习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%AF%AD%E6%B3%95/" rel="tag">语法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-day04-流程控制语句" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm7ep05ir000fsnw5cap7gxhp">
+        <img src="/tupian/j04.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        day04-流程控制语句
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-12-12T08:38:00.000Z" itemprop="datePublished">2024-12-12</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/java/">java</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            8.9k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" rel="tag">流程控制语句</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h2 id="第一章-流程控制语句"><a href="#第一章-流程控制语句" class="headerlink" title="第一章 流程控制语句"></a>第一章 流程控制语句</h2><p>在一个程序执行的过程中，各条语句的执行顺序对程序的结果是有直接影响的。所以，我们必须清楚每条语句的执行流程。而且，很多时候要通过控制语句的执行顺序来实现我们想要的功能。</p>
+<h3 id="1-1-流程控制语句分类"><a href="#1-1-流程控制语句分类" class="headerlink" title="1.1 流程控制语句分类"></a>1.1 流程控制语句分类</h3><p>​ 顺序结构</p>
+<p>​ 判断和选择结构(if, switch)</p>
+<p>​ 循环结构(for, while, do…while)</p>
+<h3 id="1-2-顺序结构"><a href="#1-2-顺序结构" class="headerlink" title="1.2 顺序结构"></a>1.2 顺序结构</h3><p>顺序结构是程序中最简单最基本的流程控制，没有特定的语法结构，按照代码的先后顺序，依次执行，程序中大多数的代码都是这样执行的。</p>
+<p>顺序结构执行流程图：</p>
+<p><img src="/tupian/1545615769372.png" alt="1545615769372"></p>
+<h2 id="第二章-判断语句：if-语句"><a href="#第二章-判断语句：if-语句" class="headerlink" title="第二章 判断语句：if 语句"></a>第二章 判断语句：if 语句</h2><h3 id="2-1-if-语句格式-1"><a href="#2-1-if-语句格式-1" class="headerlink" title="2.1 if 语句格式 1"></a>2.1 if 语句格式 1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line"><span class="keyword">if</span> (关系表达式) &#123;</span><br><span class="line">    语句体;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行流程：</p>
+<p>① 首先计算关系表达式的值</p>
+<p>② 如果关系表达式的值为 true 就执行语句体</p>
+<p>③ 如果关系表达式的值为 false 就不执行语句体</p>
+<p>④ 继续执行后面的语句内容</p>
+<p><img src="/tupian/1545616039363.png" alt="1545616039363"></p>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IfDemo</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;开始&quot;</span>);</span><br><span class="line">		<span class="comment">//定义两个变量</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">		<span class="comment">//需求：判断a和b的值是否相等，如果相等，就在控制台输出：a等于b</span></span><br><span class="line">		<span class="keyword">if</span>(a == b) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;a等于b&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//需求：判断a和c的值是否相等，如果相等，就在控制台输出：a等于c</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">		<span class="keyword">if</span>(a == c) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;a等于c&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;结束&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习-1：老丈人选女婿"><a href="#练习-1：老丈人选女婿" class="headerlink" title="练习 1：老丈人选女婿"></a>练习 1：老丈人选女婿</h4><p>需求：</p>
+<p>​ 键盘录入女婿的酒量，如果大于 2 斤，老丈人给出回应，否则没有任何回应</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分析：</span></span><br><span class="line"><span class="comment">//1.键盘录入女婿的酒量</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;请输入女婿的酒量&quot;</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">wine</span> <span class="operator">=</span> sc.nextInt();<span class="comment">//5</span></span><br><span class="line"><span class="comment">//2.对酒量进行一个判断即可</span></span><br><span class="line"><span class="keyword">if</span>(wine &gt; <span class="number">2</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;不错哟，小伙子！&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习-2：考试奖励"><a href="#练习-2：考试奖励" class="headerlink" title="练习 2：考试奖励"></a>练习 2：考试奖励</h4><p>需求：</p>
+<p>​ 键盘录入一个整数，表示小明的考试名次，如果名次为 1，小红可以当小明的女朋有了。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分析：</span></span><br><span class="line"><span class="comment">//1.键盘录入一个整数，表示小明的考试名次</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;请输入小明的名次&quot;</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">rank</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line"><span class="comment">//2.对小明的考试成绩进行判断即可</span></span><br><span class="line"><span class="keyword">if</span>(rank == <span class="number">1</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;小红成为了小明的女朋友&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="第一种格式的细节："><a href="#第一种格式的细节：" class="headerlink" title="第一种格式的细节："></a>第一种格式的细节：</h4><ol>
+<li><p>如果我们要对一个布尔类型的变量进行判断，不要写&#x3D;&#x3D;，直接把变量写在小括号中即可。</p>
+</li>
+<li><p>如果大括号中的语句体只有一条，那么大括号可以省略不写</p>
+<p>如果大括号省略了，那么 if 只能控制距离他最近的那一条语句。</p>
+<p><strong>建议：</strong>自己不要去写，如果别人这么写了，你要能看懂即可。</p>
+</li>
+</ol>
+<h3 id="2-2-if-语句格式-2"><a href="#2-2-if-语句格式-2" class="headerlink" title="2.2 if 语句格式 2"></a>2.2 if 语句格式 2</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line"><span class="keyword">if</span> (关系表达式) &#123;</span><br><span class="line">    语句体<span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    语句体<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行流程：</p>
+<p>① 首先计算关系表达式的值</p>
+<p>② 如果关系表达式的值为 true 就执行语句体 1</p>
+<p>③ 如果关系表达式的值为 false 就执行语句体 2</p>
+<p>④ 继续执行后面的语句内容</p>
+<p><img src="/tupian/1545616221283.png" alt="1545616221283"></p>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IfDemo02</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;开始&quot;</span>);</span><br><span class="line">		<span class="comment">//定义两个变量</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">		<span class="comment">//需求：判断a是否大于b，如果是，在控制台输出：a的值大于b，否则，在控制台输出：a的值不大于b</span></span><br><span class="line">		<span class="keyword">if</span>(a &gt; b) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;a的值大于b&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;a的值不大于b&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;结束&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习-1：吃饭"><a href="#练习-1：吃饭" class="headerlink" title="练习 1：吃饭"></a>练习 1：吃饭</h4><p>需求：</p>
+<p>​ 键盘录入一个整数，表示身上的钱。</p>
+<p>​ 如果大于等于 100 块，就是网红餐厅。</p>
+<p>​ 否则，就吃经济实惠的沙县小吃。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分析：</span></span><br><span class="line"><span class="comment">//1.键盘录入一个整数。表示身上的钱。</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;请输入一个整数表示身上的钱&quot;</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">money</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line"><span class="comment">//2.对钱进行判断</span></span><br><span class="line"><span class="keyword">if</span>(money &gt;= <span class="number">100</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;吃网红餐厅&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;福建大酒店&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习-2：影院选座"><a href="#练习-2：影院选座" class="headerlink" title="练习 2：影院选座"></a>练习 2：影院选座</h4><p>需求：</p>
+<p>​ 在实际开发中，电影院选座也会使用到 if 判断。</p>
+<p>​ 假设某影院售卖了 100 张票，票的序号为 1~100。</p>
+<p>​ 其中奇数票号坐左侧，偶数票号坐右侧。</p>
+<p>​ 键盘录入一个整数表示电影票的票号。</p>
+<p>​ 根据不同情况，给出不同的提示：</p>
+<p>​ 如果票号为奇数，那么打印坐左边。</p>
+<p>​ 如果票号为偶数，那么打印坐右边。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分析：</span></span><br><span class="line"><span class="comment">//1.键盘录入票号</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;请输入票号&quot;</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">ticket</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line"><span class="keyword">if</span>(ticket &gt;= <span class="number">1</span> &amp;&amp; ticket &lt;= <span class="number">100</span>)&#123;</span><br><span class="line">    <span class="comment">//合法</span></span><br><span class="line">    <span class="comment">//2.对票号进行判断</span></span><br><span class="line">    <span class="keyword">if</span> (ticket % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//偶数</span></span><br><span class="line">        System.out.println(<span class="string">&quot;坐右边&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//奇数</span></span><br><span class="line">        System.out.println(<span class="string">&quot;坐左边&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//票号不合法</span></span><br><span class="line">    System.out.println(<span class="string">&quot;票号不合法&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-if-语句格式-3"><a href="#2-3-if-语句格式-3" class="headerlink" title="2.3 if 语句格式 3"></a>2.3 if 语句格式 3</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line"><span class="keyword">if</span> (关系表达式<span class="number">1</span>) &#123;</span><br><span class="line">    语句体<span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (关系表达式<span class="number">2</span>) &#123;</span><br><span class="line">    语句体<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line">…</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    语句体n+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行流程：</p>
+<p>① 首先计算关系表达式 1 的值</p>
+<p>② 如果值为 true 就执行语句体 1；如果值为 false 就计算关系表达式 2 的值</p>
+<p>③ 如果值为 true 就执行语句体 2；如果值为 false 就计算关系表达式 3 的值</p>
+<p>④…</p>
+<p>⑤ 如果没有任何关系表达式为 true，就执行语句体 n+1。</p>
+<p><img src="/tupian/1545616667104.png" alt="1545616667104"></p>
+<h4 id="练习-1：考试奖励"><a href="#练习-1：考试奖励" class="headerlink" title="练习 1：考试奖励"></a>练习 1：考试奖励</h4><p>需求：</p>
+<p>​ 小明快要期末考试了，小明爸爸对他说，会根据他不同的考试成绩，送他不同的礼物，</p>
+<p>假如你可以控制小明的得分，请用程序实现小明到底该获得什么样的礼物，并在控制台输出。</p>
+<p>分析：</p>
+<p>​ ① 小明的考试成绩未知，可以使用键盘录入的方式获取值</p>
+<p>​ ② 由于奖励种类较多，属于多种判断，采用 if…else…if 格式实现</p>
+<p>​ ③ 为每种判断设置对应的条件</p>
+<p>​ ④ 为每种判断设置对应的奖励</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//95~100 自行车一辆</span></span><br><span class="line"><span class="comment">//90~94   游乐场玩一天</span></span><br><span class="line"><span class="comment">//80 ~ 89 变形金刚一个</span></span><br><span class="line"><span class="comment">//80 以下  胖揍一顿</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//1.键盘录入一个值表示小明的分数</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;请输入小明的成绩&quot;</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">score</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line"><span class="comment">//2.对分数的有效性进行判断</span></span><br><span class="line"><span class="keyword">if</span>(score &gt;= <span class="number">0</span> &amp;&amp; score &lt;= <span class="number">100</span>)&#123;</span><br><span class="line">    <span class="comment">//有效的分数</span></span><br><span class="line">    <span class="comment">//3.对小明的分数进行判断，不同情况执行不同的代码</span></span><br><span class="line">    <span class="keyword">if</span>(score &gt;= <span class="number">95</span> &amp;&amp; score &lt;= <span class="number">100</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;送自行车一辆&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(score &gt;= <span class="number">90</span> &amp;&amp; score &lt;= <span class="number">94</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;游乐场玩一天&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(score &gt;= <span class="number">80</span> &amp;&amp; score &lt;= <span class="number">89</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;变形金刚一个&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;胖揍一顿&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//无效的分数</span></span><br><span class="line">    System.out.println(<span class="string">&quot;分数不合法&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三章-switch-语句"><a href="#第三章-switch-语句" class="headerlink" title="第三章 switch 语句"></a>第三章 switch 语句</h2><h3 id="3-1-格式"><a href="#3-1-格式" class="headerlink" title="3.1 格式"></a>3.1 格式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (表达式) &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">		语句体<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">		语句体<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		语句体n+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-执行流程："><a href="#3-2-执行流程：" class="headerlink" title="3.2 执行流程："></a>3.2 <strong>执行流程：</strong></h3><ul>
+<li>首先计算出表达式的值</li>
+<li>其次，和 case 依次比较，一旦有对应的值，就会执行相应的语句，在执行的过程中，遇到 break 就会结 束。</li>
+<li>最后，如果所有的 case 都和表达式的值不匹配，就会执行 default 语句体部分，然后程序结束掉。</li>
+</ul>
+<h4 id="练习：运动计划"><a href="#练习：运动计划" class="headerlink" title="练习：运动计划"></a>练习：运动计划</h4><ul>
+<li><p>需求：键盘录入星期数，显示今天的减肥活动。</p>
+<p>周一：跑步</p>
+<p>周二：游泳</p>
+<p>周三：慢走</p>
+<p>周四：动感单车</p>
+<p>周五：拳击</p>
+<p>周六：爬山</p>
+<p>周日：好好吃一顿</p>
+</li>
+<li><p>代码示例：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> a01switch选择语句;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SwitchDemo2</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//1.键盘录入一个整数表示星期</span></span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入一个整数表示星期&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">week</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.书写一个switch语句去跟week进行匹配</span></span><br><span class="line">        <span class="keyword">switch</span> (week)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;跑步&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;游泳&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;慢走&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;动感单车&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;拳击&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;爬山&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;好好吃一顿&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;输入错误，没有这个星期&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-switch-的扩展知识："><a href="#3-3-switch-的扩展知识：" class="headerlink" title="3.3 switch 的扩展知识："></a>3.3 switch 的扩展知识：</h3><ul>
+<li><p>default 的位置和省略情况</p>
+<p>default 可以放在任意位置，也可以省略</p>
+</li>
+<li><p>case 穿透</p>
+<p>不写 break 会引发 case 穿透现象</p>
+</li>
+<li><p>switch 在 JDK12 的新特性</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">number</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="keyword">switch</span> (number) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; System.out.println(<span class="string">&quot;一&quot;</span>);</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; System.out.println(<span class="string">&quot;二&quot;</span>);</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; System.out.println(<span class="string">&quot;三&quot;</span>);</span><br><span class="line">    <span class="keyword">default</span> -&gt; System.out.println(<span class="string">&quot;其他&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>switch 和 if 第三种格式各自的使用场景</li>
+</ul>
+<p>当我们需要对一个范围进行判断的时候，用 if 的第三种格式</p>
+<p>当我们把有限个数据列举出来，选择其中一个执行的时候，用 switch 语句</p>
+<p>比如：</p>
+<p>​ 小明的考试成绩，如果用 switch，那么需要写 100 个 case，太麻烦了，所以用 if 简单。</p>
+<p>​ 如果是星期，月份，客服电话中 0~9 的功能选择就可以用 switch</p>
+<h4 id="练习：休息日和工作日"><a href="#练习：休息日和工作日" class="headerlink" title="练习：休息日和工作日"></a>练习：休息日和工作日</h4><p>需求：键盘录入星期数，输出工作日、休息日。</p>
+<p>(1-5) 工作日，(6-7)休息日。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分析：</span></span><br><span class="line"><span class="comment">//1.键盘录入星期数</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;请输入星期&quot;</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">week</span> <span class="operator">=</span> sc.nextInt();<span class="comment">//3</span></span><br><span class="line"><span class="comment">//2.利用switch进行匹配</span></span><br><span class="line">----------------------------------------------------</span><br><span class="line">利用<span class="keyword">case</span>穿透简化代码</span><br><span class="line"><span class="keyword">switch</span> (week)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;工作日&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;休息日&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        System.out.println(<span class="string">&quot;没有这个星期&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">----------------------------------------------------</span><br><span class="line">利用JDK12简化代码书写</span><br><span class="line"><span class="keyword">switch</span> (week) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> -&gt; System.out.println(<span class="string">&quot;工作日&quot;</span>);</span><br><span class="line">    <span class="keyword">case</span> <span class="number">6</span>, <span class="number">7</span> -&gt; System.out.println(<span class="string">&quot;休息日&quot;</span>);</span><br><span class="line">    <span class="keyword">default</span> -&gt; System.out.println(<span class="string">&quot;没有这个星期&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四章-循环结构"><a href="#第四章-循环结构" class="headerlink" title="第四章 循环结构"></a>第四章 循环结构</h2><h3 id="4-1-for-循环结构（掌握）"><a href="#4-1-for-循环结构（掌握）" class="headerlink" title="4.1 for 循环结构（掌握）"></a>4.1 for 循环结构（掌握）</h3><p>​ 循环语句可以在满足循环条件的情况下，反复执行某一段代码，这段被重复执行的代码被称为循环体语句，当反复 执行这个循环体时，需要在合适的时候把循环判断条件修改为 false，从而结束循环，否则循环将一直执行下去，形 成死循环。</p>
+<h4 id="4-1-1-for-循环格式："><a href="#4-1-1-for-循环格式：" class="headerlink" title="4.1.1 for 循环格式："></a>4.1.1 for 循环格式：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (初始化语句;条件判断语句;条件控制语句) &#123;</span><br><span class="line">	循环体语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>格式解释：</strong></p>
+<ul>
+<li>初始化语句： 用于表示循环开启时的起始状态，简单说就是循环开始的时候什么样</li>
+<li>条件判断语句：用于表示循环反复执行的条件，简单说就是判断循环是否能一直执行下去</li>
+<li>循环体语句： 用于表示循环反复执行的内容，简单说就是循环反复执行的事情</li>
+<li>条件控制语句：用于表示循环执行中每次变化的内容，简单说就是控制循环是否能执行下去</li>
+</ul>
+<p><strong>执行流程：</strong></p>
+<p>① 执行初始化语句</p>
+<p>② 执行条件判断语句，看其结果是 true 还是 false</p>
+<p>​ 如果是 false，循环结束</p>
+<p>​ 如果是 true，继续执行</p>
+<p>③ 执行循环体语句</p>
+<p>④ 执行条件控制语句</p>
+<p>⑤ 回到 ② 继续</p>
+<p><strong>for 循环书写技巧：</strong></p>
+<ul>
+<li>确定循环的开始条件</li>
+<li>确定循环的结束条件</li>
+<li>确定循环要重复执行的代码</li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.确定循环的开始条件</span></span><br><span class="line"><span class="comment">//2.确定循环的结束条件</span></span><br><span class="line"><span class="comment">//3.确定要重复执行的代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//需求：打印5次HelloWorld</span></span><br><span class="line"><span class="comment">//开始条件：1</span></span><br><span class="line"><span class="comment">//结束条件：5</span></span><br><span class="line"><span class="comment">//重复代码：打印语句</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="for-循环练习-输出数据"><a href="#for-循环练习-输出数据" class="headerlink" title="for 循环练习-输出数据"></a>for 循环练习-输出数据</h5><ul>
+<li>需求：在控制台输出 1-5 和 5-1 的数据</li>
+<li>示例代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForTest01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//需求：输出数据1-5</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123;</span><br><span class="line">			System.out.println(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;--------&quot;</span>);</span><br><span class="line">		<span class="comment">//需求：输出数据5-1</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">5</span>; i&gt;=<span class="number">1</span>; i--) &#123;</span><br><span class="line">			System.out.println(i);</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="for-循环练习-求和"><a href="#for-循环练习-求和" class="headerlink" title="for 循环练习-求和"></a>for 循环练习-求和</h5><ul>
+<li>需求：求 1-5 之间的数据和，并把求和结果在控制台输出</li>
+<li>示例代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForTest02</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//求和的最终结果必须保存起来，需要定义一个变量，用于保存求和的结果，初始值为0</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//从1开始到5结束的数据，使用循环结构完成</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123;</span><br><span class="line">			<span class="comment">//将反复进行的事情写入循环结构内部</span></span><br><span class="line">             <span class="comment">// 此处反复进行的事情是将数据 i 加到用于保存最终求和的变量 sum 中</span></span><br><span class="line">			sum = sum + i;</span><br><span class="line">			<span class="comment">/*</span></span><br><span class="line"><span class="comment">				sum += i;	sum = sum + i;</span></span><br><span class="line"><span class="comment">				第一次：sum = sum + i = 0 + 1 = 1;</span></span><br><span class="line"><span class="comment">				第二次：sum = sum + i = 1 + 2 = 3;</span></span><br><span class="line"><span class="comment">				第三次：sum = sum + i = 3 + 3 = 6;</span></span><br><span class="line"><span class="comment">				第四次：sum = sum + i = 6 + 4 = 10;</span></span><br><span class="line"><span class="comment">				第五次：sum = sum + i = 10 + 5 = 15;</span></span><br><span class="line"><span class="comment">			*/</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//当循环执行完毕时，将最终数据打印出来</span></span><br><span class="line">		System.out.println(<span class="string">&quot;1-5之间的数据和是：&quot;</span> + sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>本题要点：<ul>
+<li>今后遇到的需求中，如果带有求和二字，请立即联想到求和变量</li>
+<li>求和变量的定义位置，必须在循环外部，如果在循环内部则计算出的数据将是错误的</li>
+</ul>
+</li>
+</ul>
+<h5 id="for-循环练习-求偶数和"><a href="#for-循环练习-求偶数和" class="headerlink" title="for 循环练习-求偶数和"></a>for 循环练习-求偶数和</h5><ul>
+<li>需求：求 1-100 之间的偶数和，并把求和结果在控制台输出 }</li>
+<li>示例代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForTest03</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//求和的最终结果必须保存起来，需要定义一个变量，用于保存求和的结果，初始值为0</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//对1-100的数据求和与1-5的数据求和几乎完全一样，仅仅是结束条件不同</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">100</span>; i++) &#123;</span><br><span class="line">			<span class="comment">//对1-100的偶数求和，需要对求和操作添加限制条件，判断是否是偶数</span></span><br><span class="line">			<span class="keyword">if</span>(i%<span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//sum += i；</span></span><br><span class="line">				sum = sum + i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//当循环执行完毕时，将最终数据打印出来</span></span><br><span class="line">		System.out.println(<span class="string">&quot;1-100之间的偶数和是：&quot;</span> + sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="for-循环练习-统计次数"><a href="#for-循环练习-统计次数" class="headerlink" title="for 循环练习-统计次数"></a>for 循环练习-统计次数</h5><p>需求：</p>
+<p>​ 键盘录入两个数字，表示一个范围。</p>
+<p>​ 统计这个范围中。</p>
+<p>​ 既能被 3 整除，又能被 5 整除数字有多少个？</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-while-循环"><a href="#4-2-while-循环" class="headerlink" title="4.2 while 循环"></a>4.2 while 循环</h3><h4 id="4-2-1-格式："><a href="#4-2-1-格式：" class="headerlink" title="4.2.1 格式："></a>4.2.1 格式：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">初始化语句;</span><br><span class="line"><span class="keyword">while</span>(条件判断语句)&#123;</span><br><span class="line">	循环体;</span><br><span class="line">	条件控制语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="练习-1：打印-5-次-HelloWorld"><a href="#练习-1：打印-5-次-HelloWorld" class="headerlink" title="练习 1：打印 5 次 HelloWorld"></a>练习 1：打印 5 次 HelloWorld</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(i &lt;= <span class="number">5</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(i);</span><br></pre></td></tr></table></figure>
+
+<h5 id="练习-2：珠穆朗玛峰"><a href="#练习-2：珠穆朗玛峰" class="headerlink" title="练习 2：珠穆朗玛峰"></a>练习 2：珠穆朗玛峰</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.定义一个变量表示珠穆朗玛峰的高度</span></span><br><span class="line"><span class="type">int</span> <span class="variable">height</span> <span class="operator">=</span> <span class="number">8844430</span>;</span><br><span class="line"><span class="comment">//2.定义一个变量表示纸张的厚度</span></span><br><span class="line"><span class="type">double</span> <span class="variable">paper</span> <span class="operator">=</span> <span class="number">0.1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个计数器（变量），用来统计折叠的次数</span></span><br><span class="line"><span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.循环折叠纸张</span></span><br><span class="line"><span class="comment">//只有纸张的厚度 &lt; 穆朗玛峰的高度 循环才继续，否则循环就停止</span></span><br><span class="line"><span class="comment">//坑：只有判断为真，循环才会继续</span></span><br><span class="line"><span class="keyword">while</span>(paper &lt; height)&#123;</span><br><span class="line">    <span class="comment">//折叠纸张</span></span><br><span class="line">    paper = paper * <span class="number">2</span>;</span><br><span class="line">    count++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.打印一下纸张的厚度</span></span><br><span class="line">System.out.println(count);<span class="comment">//27</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-do…while-循环"><a href="#4-3-do…while-循环" class="headerlink" title="4.3 do…while 循环"></a>4.3 do…while 循环</h3><p>本知识点了解即可</p>
+<p>格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">初始化语句;</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    循环体;</span><br><span class="line">    条件控制语句;</span><br><span class="line">&#125;<span class="keyword">while</span>(条件判断语句);</span><br></pre></td></tr></table></figure>
+
+<p>特点：</p>
+<p>​ 先执行，再判断。</p>
+<h3 id="4-4-三种格式的区别："><a href="#4-4-三种格式的区别：" class="headerlink" title="4.4 三种格式的区别："></a>4.4 三种格式的区别：</h3><p>​ for 和 while 循环，是先判断，再执行。</p>
+<p>​ do…while 是先执行，再判断。</p>
+<p>​ 当知道循环次数或者循环范围的时候，用 for 循环。</p>
+<p>​ 当不知道循环次数，也不知道循环范围，但是知道循环的结束条件时，用 while 循环。</p>
+<h2 id="本篇文章代码由黑马程序员提供"><a href="#本篇文章代码由黑马程序员提供" class="headerlink" title="本篇文章代码由黑马程序员提供"></a>本篇文章代码由<a target="_blank" rel="noopener" href="https://space.bilibili.com/37974444?spm_id_from=333.337.search-card.all.click">黑马程序员</a>提供</h2>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2024/12/12/day05-%E6%95%B0%E7%BB%84/"
+      title="day05-数组"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        day05-数组
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/12/12/day03%E7%AC%94%E8%AE%B0/"
+      title="day03-运算符"
+     >
+
+    <p class="title-text">
+      
+        day03-运算符
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2025 SakuraKy<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>

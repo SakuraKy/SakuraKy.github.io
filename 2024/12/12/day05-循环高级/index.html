@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHEYCXHN4K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-NHEYCXHN4K');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end -->
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>day05-循环高级 | SakuraKy的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="1.无限循环概念：​ 又叫死循环。循环一直停不下来。 for 格式：123for(;;)&#123;    System.out.println(&quot;循环执行一直在打印内容&quot;);&#125;  解释： 初始化语句可以空着不写，表示循环之前不定义任何的控制变量。 条件判断语句可以空着不写，如果不写，默认表示 true，循环一直进行。 条件控制语句可以空着不写，表示每次循环体执行完毕">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day05-循环高级">
+<meta property="og:url" content="https://www.sakuraky.cn/2024/12/12/day05-%E5%BE%AA%E7%8E%AF%E9%AB%98%E7%BA%A7/index.html">
+<meta property="og:site_name" content="SakuraKy的博客">
+<meta property="og:description" content="1.无限循环概念：​ 又叫死循环。循环一直停不下来。 for 格式：123for(;;)&#123;    System.out.println(&quot;循环执行一直在打印内容&quot;);&#125;  解释： 初始化语句可以空着不写，表示循环之前不定义任何的控制变量。 条件判断语句可以空着不写，如果不写，默认表示 true，循环一直进行。 条件控制语句可以空着不写，表示每次循环体执行完毕">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.sakuraky.cn/tupian/j05.jpg">
+<meta property="article:published_time" content="2024-12-12T08:39:00.000Z">
+<meta property="article:modified_time" content="2025-02-21T11:22:23.298Z">
+<meta property="article:author" content="SakuraKy">
+<meta property="article:tag" content="循环">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.sakuraky.cn/tupian/j05.jpg">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/tupian/hengbantupian.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>SakuraKy的博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/tupian/touxiang.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">SakuraKy </div>
+      <div class="dot"></div>
+      <div class="subtitle">Genius is an infinite capacity for taking pains. </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com/Sakurak_ky" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://steamcommunity.com/profiles/76561199024245019/" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/SakuraKy" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://t.me/sakuraky" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/517866344" title="BiliBili"><i class="fa-brands fa-bilibili"></i></a>
+        
+          <a class="link-btn" href="mailto:sakuraky.shen@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">分类</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">
+                算法
+                <div class="category-count">4</div>
+            </a>
+        
+            <a class="category-link" href="/categories/java/">
+                java
+                <div class="category-count">35</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Docker/">
+                Docker
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/git/">
+                git
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">标签</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/API/" rel="tag">API</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/idea%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="tag">idea安装及使用</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E5%8A%A0%E5%BC%BA/" rel="tag">基础加强</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" rel="tag">学生管理系统</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%96%B9%E6%B3%95/" rel="tag">方法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" rel="tag">流程控制语句</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="tag">环境变量</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag">练习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%AF%AD%E6%B3%95/" rel="tag">语法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-day05-循环高级" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm7ep05ir000hsnw5hsx320rz">
+        <img src="/tupian/j05.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        day05-循环高级
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-12-12T08:39:00.000Z" itemprop="datePublished">2024-12-12</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/java/">java</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            4.5k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h2 id="1-无限循环"><a href="#1-无限循环" class="headerlink" title="1.无限循环"></a>1.无限循环</h2><h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><p>​ 又叫死循环。循环一直停不下来。</p>
+<h3 id="for-格式："><a href="#for-格式：" class="headerlink" title="for 格式："></a>for 格式：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(;;)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;循环执行一直在打印内容&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<p>初始化语句可以空着不写，表示循环之前不定义任何的控制变量。</p>
+<p>条件判断语句可以空着不写，如果不写，默认表示 true，循环一直进行。</p>
+<p>条件控制语句可以空着不写，表示每次循环体执行完毕后，控制变量不做任何变化。</p>
+<h3 id="while-格式："><a href="#while-格式：" class="headerlink" title="while 格式："></a>while 格式：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;循环执行一直在打印内容&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<p>​ 小括号里面就不能省略了，true 一定要写出来，否则代码会报错。</p>
+<h3 id="do…while-格式："><a href="#do…while-格式：" class="headerlink" title="do…while 格式："></a>do…while 格式：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;循环执行一直在打印内容&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<p>​ 小括号里面就不能省略了，true 一定要写出来，否则代码会报错。</p>
+<h3 id="无限循环的注意事项："><a href="#无限循环的注意事项：" class="headerlink" title="无限循环的注意事项："></a>无限循环的注意事项：</h3><ul>
+<li>最为常用的格式：while</li>
+<li>无限循环下面不能再写其他代码了，因为永远执行不到。</li>
+</ul>
+<h2 id="2-条件控制语句"><a href="#2-条件控制语句" class="headerlink" title="2.条件控制语句"></a>2.条件控制语句</h2><ul>
+<li>break</li>
+<li>continue</li>
+</ul>
+<h3 id="break"><a href="#break" class="headerlink" title="break:"></a>break:</h3><p>​ 不能单独存在的。可以用在 switch 和循环中，表示结束，跳出的意思。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.吃1~5号包子</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;在吃第&quot;</span> + i + <span class="string">&quot;个包子&quot;</span>);</span><br><span class="line">    <span class="comment">//2.吃完第三个的时候就不吃了</span></span><br><span class="line">    <span class="keyword">if</span>(i == <span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">break</span>;<span class="comment">//结束整个循环。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue:"></a>continue:</h3><p>​ 不能单独存在的。只能存在于循环当中。</p>
+<p>​ 表示：跳过本次循环，继续执行下次循环。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.吃1~5号包子</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">    <span class="comment">//2.第3个包子有虫子就跳过，继续吃下面的包子</span></span><br><span class="line">    <span class="keyword">if</span>(i == <span class="number">3</span>)&#123;</span><br><span class="line">        <span class="comment">//跳过本次循环（本次循环中，下面的代码就不执行了），继续执行下次循环。</span></span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;在吃第&quot;</span> + i + <span class="string">&quot;个包子&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Random"><a href="#3-Random" class="headerlink" title="3. Random"></a>3. Random</h2><p>Random 跟 Scanner 一样，也是 Java 提前写好的类，我们不需要关心是如何实现的，只要直接使用就可以了。</p>
+<h3 id="使用步骤："><a href="#使用步骤：" class="headerlink" title="使用步骤："></a>使用步骤：</h3><ol>
+<li>导包</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line">导包的动作必须出现在类定义的上边。</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>创建对象</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Random</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span> ();</span><br><span class="line">上面这个格式里面，只有r是变量名，可以变，其他的都不允许变。</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>生成随机数</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">number</span> <span class="operator">=</span> r.nextInt(随机数的范围);</span><br><span class="line">上面这个格式里面，只有number是变量名，可以变，其他的都不允许变。</span><br><span class="line">随机数范围的特点：从<span class="number">0</span>开始，不包含指定值。比如：参数为<span class="number">10</span>，生成的范围[<span class="number">0</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.导包</span></span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RandomDemo1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//2.创建对象</span></span><br><span class="line">        <span class="type">Random</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">        <span class="comment">//3.生成随机数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">number</span> <span class="operator">=</span> r.nextInt(<span class="number">100</span>);<span class="comment">//包左不包右，包头不包尾</span></span><br><span class="line">        <span class="comment">//0 ~ 99</span></span><br><span class="line">        System.out.println(number);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-逢七过"><a href="#4-逢七过" class="headerlink" title="4. 逢七过"></a>4. 逢七过</h2><p>需求：</p>
+<p>​ 朋友聚会的时候可能会玩一个游戏：逢 7 过</p>
+<p>​ 游戏规则：从任意一个数字开始报数，当你要报的数字是包含 7 或者是 7 的倍数时都要说过：过</p>
+<p>​ 使用程序在控制台打印出 1-100 之间的满足逢七必过规则的数据</p>
+<p>举例：</p>
+<p>​ 1 2 3 4 5 6 过 8 9 10 11 12 13 过 15 16 过 18 …</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*朋友聚会的时候可能会玩一个游戏：逢7过</span></span><br><span class="line"><span class="comment">        游戏规则：从任意一个数字开始报数，当你要报的数字是包含7或者是7的倍数时都要说过：过</span></span><br><span class="line"><span class="comment">        需求：使用程序在控制台打印出1-100之间的满足逢七必过规则的数据*/</span></span><br><span class="line"><span class="comment">//分析：</span></span><br><span class="line"><span class="comment">//个位7  十位7   7倍数</span></span><br><span class="line"><span class="comment">//1 2 3 4 5 6 过 8 9 10 11 12 13 过 15 16 过 18 19 20 过....</span></span><br><span class="line"><span class="comment">//69 过 过 过 过 过 过... 80</span></span><br><span class="line"><span class="comment">//1.得到1~100之间的每一个数字</span></span><br><span class="line"><span class="comment">//开始：1</span></span><br><span class="line"><span class="comment">//结束：100</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">    <span class="comment">//2.判断每一个数字，如果符合规则，就打印过，如果不符合规则就打印真实的数字</span></span><br><span class="line">    <span class="keyword">if</span>(i % <span class="number">10</span> == <span class="number">7</span> || i / <span class="number">10</span> % <span class="number">10</span> == <span class="number">7</span>  ||  i % <span class="number">7</span> == <span class="number">0</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;过&quot;</span>);</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-平方根"><a href="#5-平方根" class="headerlink" title="5. 平方根"></a>5. 平方根</h2><p>需求：</p>
+<p>​ 键盘录入一个大于等于 2 的整数 x ，计算并返回 x 的 平方根 。结果只保留整数部分 ，小数部分将被舍去 。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*需求：键盘录入一个大于等于2的整数 x ，计算并返回 x 的 平方根 。</span></span><br><span class="line"><span class="comment">        结果只保留整数部分 ，小数部分将被舍去 。*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//分析：</span></span><br><span class="line"><span class="comment">//平方根   16的平方根4</span></span><br><span class="line"><span class="comment">//         4的平方根2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"><span class="comment">// 1 * 1 = 1 &lt; 10</span></span><br><span class="line"><span class="comment">// 2 * 2 = 4 &lt; 10</span></span><br><span class="line"><span class="comment">// 3 * 3 = 9 &lt; 10</span></span><br><span class="line"><span class="comment">// 4 * 4 = 16 &gt; 10</span></span><br><span class="line"><span class="comment">//推断：10的平方根是在3~4之间。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 20</span></span><br><span class="line"><span class="comment">// 1 * 1 = 1 &lt; 20</span></span><br><span class="line"><span class="comment">// 2 * 2 = 4 &lt; 20</span></span><br><span class="line"><span class="comment">// 3 * 3 = 9 &lt; 20</span></span><br><span class="line"><span class="comment">// 4 * 4 = 16 &lt; 20</span></span><br><span class="line"><span class="comment">// 5 * 5 = 25 &gt; 20</span></span><br><span class="line"><span class="comment">//推断：20的平方根是在4~5之间。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//在代码当中</span></span><br><span class="line"><span class="comment">//从1开始循环，拿着数字的平方跟原来的数字进行比较</span></span><br><span class="line"><span class="comment">//如果小于的，那么继续往后判断</span></span><br><span class="line"><span class="comment">//如果相等，那么当前数字就是平方根</span></span><br><span class="line"><span class="comment">//如果大于的，那么前一个数字就是平方跟的整数部分</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//1.键盘录入一个整数</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;请输入一个整数&quot;</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">number</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line"><span class="comment">//2.从1开始循环判断</span></span><br><span class="line"><span class="comment">//开始：1 结束: number</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= number; i++) &#123;</span><br><span class="line">    <span class="comment">//用i * i 再跟number进行比较</span></span><br><span class="line">    <span class="keyword">if</span>(i * i == number)&#123;</span><br><span class="line">        System.out.println(i + <span class="string">&quot;就是&quot;</span> + number + <span class="string">&quot;的平方根&quot;</span>);</span><br><span class="line">        <span class="comment">//一旦找到了，循环就可以停止了，后面的数字就不需要再找了，提高代码的运行效率。</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i * i &gt; number)&#123;</span><br><span class="line">        System.out.println((i - <span class="number">1</span>) + <span class="string">&quot;就是&quot;</span> + number + <span class="string">&quot;平方根的整数部分&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-判断是否为质数"><a href="#6-判断是否为质数" class="headerlink" title="6.判断是否为质数"></a>6.判断是否为质数</h2><p>需求：</p>
+<p>​ 键盘录入一个正整数 x ，判断该整数是否为一个质数。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需求：键盘录入一个正整数 x ，判断该整数是否为一个质数。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//质数：</span></span><br><span class="line"><span class="comment">//如果一个整数只能被1和本身整除，那么这个数就是质数。否则这个数叫做合数</span></span><br><span class="line"><span class="comment">//7 = 1 * 7 质数</span></span><br><span class="line"><span class="comment">//8 = 1 * 8  2 * 4 合数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//分析：</span></span><br><span class="line"><span class="comment">//1.键盘录入一个正整数</span></span><br><span class="line"><span class="comment">//number</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;请输入一个正整数&quot;</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">number</span> <span class="operator">=</span> sc.nextInt();<span class="comment">//9</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个变量，表示标记</span></span><br><span class="line"><span class="comment">//标记着number是否为一个质数</span></span><br><span class="line"><span class="comment">//true： 是一个质数</span></span><br><span class="line"><span class="comment">//false : 不是一个质数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//表示最初就认为number是一个质数</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//2.判断</span></span><br><span class="line"><span class="comment">//写一个循环，从2开始判断，一直判断到number-1为止</span></span><br><span class="line"><span class="comment">//看这个范围之内，有没有数字可以被number整除</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt; number; i++) &#123;</span><br><span class="line">    <span class="comment">//i 依次表示这个范围之内的每一个数字</span></span><br><span class="line">    <span class="comment">//看number是否能被i整除就可以了</span></span><br><span class="line">    <span class="keyword">if</span>(number % i == <span class="number">0</span>)&#123;<span class="comment">// 9 % 2 = 1</span></span><br><span class="line">        flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">//System.out.println(number + &quot;不是一个质数&quot;);</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;<span class="comment">/*else&#123;</span></span><br><span class="line"><span class="comment">                System.out.println(number + &quot;是一个质数&quot;);</span></span><br><span class="line"><span class="comment">            &#125;*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只有当这个循环结束了，表示这个范围之内所有的数字都判断完毕了</span></span><br><span class="line"><span class="comment">//此时才能断定number是一个质数</span></span><br><span class="line"><span class="keyword">if</span>(flag)&#123;</span><br><span class="line">    System.out.println(number + <span class="string">&quot;是一个质数&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    System.out.println(number + <span class="string">&quot;不是一个质数&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-猜数字小游戏"><a href="#7-猜数字小游戏" class="headerlink" title="7. 猜数字小游戏"></a>7. 猜数字小游戏</h2><p>需求：</p>
+<p>​ 程序自动生成一个 1-100 之间的随机数，在代码中使用键盘录入去猜出这个数字是多少？</p>
+<p>要求：</p>
+<p>​ 使用循环猜，一直猜中为止。</p>
+<p>思路分析：</p>
+<ol>
+<li>生成一个 1-100 之间的随机数</li>
+<li>使用键盘录入去猜出这个数字是多少</li>
+<li>把反复猜的代码写在循环中</li>
+</ol>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.生成一个1-100之间的随机数</span></span><br><span class="line"><span class="type">Random</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line"><span class="type">int</span> <span class="variable">number</span> <span class="operator">=</span> r.nextInt(<span class="number">100</span>) + <span class="number">1</span>;<span class="comment">// 0 ~ 99 + 1 --- 1 ~ 100</span></span><br><span class="line">System.out.println(number);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.使用键盘录入去猜出这个数字是多少？</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;请输入一个整数&quot;</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">guessNumber</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">    <span class="comment">//3.比较</span></span><br><span class="line">    <span class="keyword">if</span>(guessNumber &gt; number)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;您猜的数字大了&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(guessNumber &lt; number)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;您猜的数字小了&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;恭喜你，猜中了&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="本篇文章代码由黑马程序员提供"><a href="#本篇文章代码由黑马程序员提供" class="headerlink" title="本篇文章代码由黑马程序员提供"></a>本篇文章代码由<a target="_blank" rel="noopener" href="https://space.bilibili.com/37974444?spm_id_from=333.337.search-card.all.click">黑马程序员</a>提供</h2>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2024/12/12/day06-%E6%96%B9%E6%B3%95/"
+      title="day06-方法"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        day06-方法
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/12/12/day05-%E6%95%B0%E7%BB%84/"
+      title="day05-数组"
+     >
+
+    <p class="title-text">
+      
+        day05-数组
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2025 SakuraKy<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>

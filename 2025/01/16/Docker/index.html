@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHEYCXHN4K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-NHEYCXHN4K');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end -->
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>Docker入门讲解 | SakuraKy的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="Docker 简介Docker 是一个开源的 容器化平台，用于开发、部署和运行应用程序。它通过将应用程序及其依赖项打包到一个轻量级的容器中，实现了应用程序的跨平台和一致性运行。  Docker 的核心概念1. 容器（Container） 定义：容器是一个轻量级的、独立的、可执行的软件包，包含运行应用程序所需的所有内容（代码、运行时、库、环境变量等）。 特点：容器是动态的，可以启动、停止、删除和修改">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入门讲解">
+<meta property="og:url" content="https://www.sakuraky.cn/2025/01/16/Docker/index.html">
+<meta property="og:site_name" content="SakuraKy的博客">
+<meta property="og:description" content="Docker 简介Docker 是一个开源的 容器化平台，用于开发、部署和运行应用程序。它通过将应用程序及其依赖项打包到一个轻量级的容器中，实现了应用程序的跨平台和一致性运行。  Docker 的核心概念1. 容器（Container） 定义：容器是一个轻量级的、独立的、可执行的软件包，包含运行应用程序所需的所有内容（代码、运行时、库、环境变量等）。 特点：容器是动态的，可以启动、停止、删除和修改">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.sakuraky.cn/tupian/Docker.png">
+<meta property="article:published_time" content="2025-01-16T02:04:00.000Z">
+<meta property="article:modified_time" content="2025-02-21T11:22:23.297Z">
+<meta property="article:author" content="SakuraKy">
+<meta property="article:tag" content="基础知识">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.sakuraky.cn/tupian/Docker.png">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/tupian/hengbantupian.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>SakuraKy的博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/tupian/touxiang.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">SakuraKy </div>
+      <div class="dot"></div>
+      <div class="subtitle">Genius is an infinite capacity for taking pains. </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com/Sakurak_ky" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://steamcommunity.com/profiles/76561199024245019/" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/SakuraKy" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://t.me/sakuraky" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/517866344" title="BiliBili"><i class="fa-brands fa-bilibili"></i></a>
+        
+          <a class="link-btn" href="mailto:sakuraky.shen@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">分类</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">
+                算法
+                <div class="category-count">4</div>
+            </a>
+        
+            <a class="category-link" href="/categories/java/">
+                java
+                <div class="category-count">35</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Docker/">
+                Docker
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/git/">
+                git
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">标签</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/API/" rel="tag">API</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/idea%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="tag">idea安装及使用</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E5%8A%A0%E5%BC%BA/" rel="tag">基础加强</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" rel="tag">学生管理系统</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%96%B9%E6%B3%95/" rel="tag">方法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" rel="tag">流程控制语句</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="tag">环境变量</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag">练习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%AF%AD%E6%B3%95/" rel="tag">语法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-Docker" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm7ep05iq000asnw5g2kxdm7k">
+        <img src="/tupian/Docker.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        Docker入门讲解
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-01-16T02:04:00.000Z" itemprop="datePublished">2025-01-16</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Docker/">Docker</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            3.2k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h1><p><strong>Docker</strong> 是一个开源的 <strong>容器化平台</strong>，用于开发、部署和运行应用程序。它通过将应用程序及其依赖项打包到一个轻量级的容器中，实现了应用程序的跨平台和一致性运行。</p>
+<hr>
+<h2 id="Docker-的核心概念"><a href="#Docker-的核心概念" class="headerlink" title="Docker 的核心概念"></a>Docker 的核心概念</h2><h3 id="1-容器（Container）"><a href="#1-容器（Container）" class="headerlink" title="1. 容器（Container）"></a>1. <strong>容器（Container）</strong></h3><ul>
+<li>定义：容器是一个轻量级的、独立的、可执行的软件包，包含运行应用程序所需的所有内容（代码、运行时、库、环境变量等）。</li>
+<li>特点：<br>容器是动态的，可以启动、停止、删除和修改。<br>容器之间相互隔离，互不影响。<br>容器共享宿主机的操作系统内核，因此比虚拟机更轻量级。</li>
+<li>作用：<br>容器是应用程序的运行环境，可以在任何支持 Docker 的平台上运行。<br>容器提供了一种一致的方式来运行应用程序，避免了“在我机器上能运行”的问题。</li>
+<li>意义：容器与虚拟机不同，它共享主机操作系统的内核，因此更加轻量级和高效。</li>
+</ul>
+<h3 id="2-镜像（Image）"><a href="#2-镜像（Image）" class="headerlink" title="2. 镜像（Image）"></a>2. <strong>镜像（Image）</strong></h3><ul>
+<li>定义：镜像是一个只读模板，用于创建容器。它包含应用程序的代码、运行时、库和配置文件。</li>
+<li>特点：<br>镜像是静态的，不可修改。<br>镜像可以基于其他镜像构建（通过 Dockerfile）。<br>镜像可以从 Docker Hub（公共镜像仓库）或私有仓库中拉取。</li>
+<li>作用：<br>镜像是容器的基础，容器是从镜像创建的运行实例。<br>镜像提供了一种标准化的方式来打包和分发应用程序。</li>
+</ul>
+<h3 id="3-镜像（Image）与容器（Container）的关系"><a href="#3-镜像（Image）与容器（Container）的关系" class="headerlink" title="3. 镜像（Image）与容器（Container）的关系"></a>3. <strong>镜像（Image）与容器（Container）的关系</strong></h3><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>镜像 (Image)</strong></th>
+<th><strong>容器 (Container)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>定义</strong></td>
+<td>镜像是只读的模板，包含运行应用程序所需的所有内容（代码、运行时、库、配置文件等）。</td>
+<td>容器是镜像的运行实例，是一个轻量级的、独立的、可执行的软件包。</td>
+</tr>
+<tr>
+<td><strong>状态</strong></td>
+<td>静态的，不可修改。</td>
+<td>动态的，可以启动、停止、删除和修改。</td>
+</tr>
+<tr>
+<td><strong>文件系统</strong></td>
+<td>只读层。</td>
+<td>在镜像的基础上添加一个可写层（容器层），允许在运行时修改文件。</td>
+</tr>
+<tr>
+<td><strong>作用</strong></td>
+<td>提供容器的初始状态，是容器的基础。</td>
+<td>运行应用程序，提供一致的环境。</td>
+</tr>
+<tr>
+<td><strong>创建方式</strong></td>
+<td>通过 Dockerfile 构建，或从 Docker Hub 拉取。</td>
+<td>通过 <code>docker run</code> 命令从镜像创建。</td>
+</tr>
+<tr>
+<td><strong>修改影响</strong></td>
+<td>容器的修改不会影响镜像。</td>
+<td>容器的修改只会保存在容器的可写层中，不会影响镜像。</td>
+</tr>
+<tr>
+<td><strong>生命周期</strong></td>
+<td>镜像是持久的，可以重复使用。</td>
+<td>容器是临时的，可以随时启动、停止或删除。</td>
+</tr>
+<tr>
+<td><strong>类比</strong></td>
+<td>镜像就像是一个安装光盘，包含了操作系统和软件的所有内容。</td>
+<td>容器就像是从光盘安装后的运行系统，可以在系统中安装新软件或修改文件。</td>
+</tr>
+<tr>
+<td><strong>示例</strong></td>
+<td>从 Docker Hub 拉取 Ubuntu 镜像：<code>docker pull ubuntu</code></td>
+<td>从 Ubuntu 镜像创建容器：<code>docker run -it ubuntu bash</code></td>
+</tr>
+<tr>
+<td><strong>总结</strong></td>
+<td>镜像是容器的模板，定义了容器的初始状态。</td>
+<td>容器是镜像的运行实例，可以在运行时修改其状态。</td>
+</tr>
+</tbody></table>
+<h3 id="4-Dockerfile"><a href="#4-Dockerfile" class="headerlink" title="4. Dockerfile"></a>4. <strong>Dockerfile</strong></h3><ul>
+<li>Dockerfile 是一个文本文件，包含构建镜像的指令（如基础镜像、安装软件、复制文件等）。</li>
+</ul>
+<h3 id="5-Docker-Hub"><a href="#5-Docker-Hub" class="headerlink" title="5. Docker Hub"></a>5. <strong>Docker Hub</strong></h3><ul>
+<li>Docker Hub 是一个公共的镜像仓库，用户可以从中拉取官方或社区提供的镜像。</li>
+</ul>
+<hr>
+<h2 id="Docker-的本质"><a href="#Docker-的本质" class="headerlink" title="Docker 的本质"></a>Docker 的本质</h2><ul>
+<li>运行 Docker 的本质就是在 Linux 内核中制造一个隔离的文件环境，来运行相关的操作。</li>
+</ul>
+<hr>
+<h2 id="Docker-的优势"><a href="#Docker-的优势" class="headerlink" title="Docker 的优势"></a>Docker 的优势</h2><ul>
+<li><strong>一致性</strong>：容器在任何环境中都能以相同的方式运行，避免了“在我机器上能运行”的问题。</li>
+<li><strong>轻量级</strong>：容器共享主机内核，资源占用少，启动速度快。</li>
+<li><strong>隔离性</strong>：容器之间相互隔离，互不影响。</li>
+<li><strong>可移植性</strong>：容器可以在任何支持 Docker 的平台上运行（如 Linux、Windows、macOS）。</li>
+<li><strong>易于扩展</strong>：通过 Docker Compose 或 Kubernetes 可以轻松管理多个容器。</li>
+</ul>
+<hr>
+<h2 id="Docker-的使用场景"><a href="#Docker-的使用场景" class="headerlink" title="Docker 的使用场景"></a>Docker 的使用场景</h2><ul>
+<li><strong>开发环境</strong>：为开发团队提供一致的开发环境，避免环境配置问题。</li>
+<li><strong>持续集成&#x2F;持续部署（CI&#x2F;CD）</strong>：在 CI&#x2F;CD 流水线中使用 Docker 构建和测试应用程序。</li>
+<li><strong>微服务架构</strong>：将应用程序拆分为多个微服务，每个微服务运行在独立的容器中。</li>
+<li><strong>本地测试</strong>：在本地运行复杂的多服务应用程序（如数据库、消息队列等）。</li>
+<li><strong>云计算</strong>：在云平台上部署和管理容器化应用程序。</li>
+</ul>
+<hr>
+<h2 id="如何在-Windows-上使用-Docker"><a href="#如何在-Windows-上使用-Docker" class="headerlink" title="如何在 Windows 上使用 Docker"></a>如何在 Windows 上使用 Docker</h2><p>在 Windows 上使用 Docker 需要安装 <strong>Docker Desktop</strong>，它支持 Windows 10 及以上版本。</p>
+<h3 id="1-安装-Docker-Desktop"><a href="#1-安装-Docker-Desktop" class="headerlink" title="1. 安装 Docker Desktop"></a>1. <strong>安装 Docker Desktop</strong></h3><ol>
+<li><p>下载 Docker Desktop：</p>
+<ul>
+<li>访问 Docker 官网：<a target="_blank" rel="noopener" href="https://www.docker.com/products/docker-desktop">https://www.docker.com/products/docker-desktop</a></li>
+<li>下载并安装 Docker Desktop。</li>
+</ul>
+</li>
+<li><p>启用 WSL 2 或 Hyper-V：</p>
+<ul>
+<li>系统要求：<br>WSL2：⽐较适合开发环境。<br>Hyper-V：则更适⽤于⽣产环境，特别是在需要⾼性能和稳定性的情况下。</li>
+<li>Docker Desktop 需要 WSL 2 或 Hyper-V 支持。</li>
+<li>如果使用 WSL 2，请确保已启用 WSL 2 并安装 Linux 发行版。</li>
+<li>这里选择的是 WSL2 作为示例<br><img src="/tupian/wsl2.png"></li>
+<li>并且官方还提到，我们需要先卸载其他的版本，否则造成冲突<br><img src="/tupian/wsl2.1.png"></li>
+</ul>
+</li>
+<li><p>启动 Docker Desktop：</p>
+<ul>
+<li>安装完成后，启动 Docker Desktop。</li>
+<li>Docker 会在系统托盘中运行。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-使用-Docker"><a href="#2-使用-Docker" class="headerlink" title="2. 使用 Docker"></a>2. <strong>使用 Docker</strong></h3><ol>
+<li><p><strong>拉取镜像</strong>：</p>
+<ul>
+<li>打开 PowerShell 或命令提示符，运行以下命令拉取一个镜像（如 Ubuntu）：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>运行容器</strong>：</p>
+<ul>
+<li>使用以下命令运行一个容器：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it ubuntu bash</span><br></pre></td></tr></table></figure>
+这会启动一个 Ubuntu 容器并进入交互式 Shell。</li>
+</ul>
+</li>
+<li><p><strong>构建镜像</strong>：</p>
+<ul>
+<li>创建一个 Dockerfile，然后使用以下命令构建镜像：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t my-image .</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>管理容器</strong>：</p>
+<ul>
+<li>查看运行中的容器：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure></li>
+<li>停止容器：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop &lt;容器ID&gt;</span><br></pre></td></tr></table></figure></li>
+<li>删除容器：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> &lt;容器ID&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Docker-的常用命令"><a href="#Docker-的常用命令" class="headerlink" title="Docker 的常用命令"></a>Docker 的常用命令</h2><h3 id="1-镜像相关"><a href="#1-镜像相关" class="headerlink" title="1. 镜像相关"></a>1. <strong>镜像相关</strong></h3><ul>
+<li>拉取镜像（从一个仓库取一个装满货物的集装箱）：<code>docker pull &lt;镜像名&gt;</code></li>
+<li>列出镜像（查看仓库⾥有哪些可⽤的集装箱）：<code>docker images</code></li>
+<li>删除镜像（删除某个不再需要的集装箱模板）：<code>docker rmi &lt;镜像ID&gt;</code></li>
+</ul>
+<h3 id="2-容器相关"><a href="#2-容器相关" class="headerlink" title="2. 容器相关"></a>2. <strong>容器相关</strong></h3><ul>
+<li>运行容器（将集装箱吊装到卡⻋上，启动运输）：<code>docker run &lt;镜像名&gt;</code></li>
+<li>列出容器（查看哪些集装箱正在运输&#x2F;使⽤）：<code>docker ps</code>（查看运行中的容器），<code>docker ps -a</code>（查看所有容器）</li>
+<li>停止容器（将集装箱从卡⻋上卸下，停⽌运⾏）：<code>docker stop &lt;容器ID&gt;</code></li>
+<li>删除容器（销毁⼀个不再需要的集装箱实例）：<code>docker rm &lt;容器ID&gt;</code></li>
+</ul>
+<h3 id="3-构建镜像"><a href="#3-构建镜像" class="headerlink" title="3. 构建镜像"></a>3. <strong>构建镜像</strong></h3><ul>
+<li>使⽤ Dockerfile 构建镜像（根据⻝谱制作⼀个全新的菜品）：<code>docker build -t &lt;镜像名&gt;</code></li>
+</ul>
+<h3 id="4-调试容器"><a href="#4-调试容器" class="headerlink" title="4. 调试容器"></a>4. <strong>调试容器</strong></h3><ul>
+<li>查看容器⽇志（检查运输过程中发⽣了什么）：<code>docker logs &lt;容器ID&gt;</code></li>
+<li>进入容器（进⼊集装箱内部，检查货物情况）：<code>docker exec -it &lt;容器ID&gt; bash</code></li>
+</ul>
+<hr>
+<h2 id="Docker-的生态系统"><a href="#Docker-的生态系统" class="headerlink" title="Docker 的生态系统"></a>Docker 的生态系统</h2><ul>
+<li><strong>Docker Compose</strong>：用于定义和运行多容器应用程序。</li>
+<li><strong>Docker Swarm</strong>：Docker 原生的容器编排工具。</li>
+<li><strong>Kubernetes</strong>：更强大的容器编排平台，支持大规模容器部署。</li>
+<li><strong>Docker Hub</strong>：公共镜像仓库，提供大量官方和社区镜像。</li>
+</ul>
+<hr>
+<h2 id="Docker-汉化"><a href="#Docker-汉化" class="headerlink" title="Docker 汉化"></a>Docker 汉化</h2><ul>
+<li>这里的 github 仓库中提供了一个汉化包（但是不太建议汉化，虽然汉化后很多操作会比较方便易懂）<br><a target="_blank" rel="noopener" href="https://github.com/asxez/DockerDesktop-CN">汉化链接</a></li>
+</ul>
+<hr>
+<h2 id="添加一个-hub-源"><a href="#添加一个-hub-源" class="headerlink" title="添加一个 hub 源"></a>添加一个 hub 源</h2><ul>
+<li>这是一个国内的镜像<br>目的：不用魔法，去拉取 docker hop 里面的一些东西</li>
+<li>请严格按照路径修改对应的文件<br><img src="/tupian/dockerguonei.png" alt="图片"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line">  <span class="string">&quot;https://docker.m.daocloud.io&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>Docker 是一个强大的容器化平台，能够显著简化应用程序的开发、测试和部署流程。在 Windows 上，可以通过 Docker Desktop 轻松使用 Docker。如果你需要跨平台、一致性的开发环境，或者正在构建微服务架构，Docker 是一个非常好的选择。</li>
+</ul>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2025/01/07/git&GitHub/"
+      title="git&GitHub&Gitee入门讲解"
+     >
+
+    <p class="title-text">
+      
+        git&amp;GitHub&amp;Gitee入门讲解
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2025 SakuraKy<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
