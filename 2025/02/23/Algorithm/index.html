@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="desktop" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHEYCXHN4K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-NHEYCXHN4K');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end -->
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>算法-链表 | SakuraKy的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="Test19 删除链表的倒数第 N 个节点 通过快慢指针来解决，类似于你要删除中间元素的题  题目 解题过程1.初始化12ListNode dummy &#x3D; new ListNode(0);dummy.next &#x3D; head;   创建一个新指针，类型是 ListNode，它指向了 head 节点的地址 head 是链表的头结点，通常在链表操作中，它是整个链表的入口节点。通过 head 我们可以访问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法-链表">
+<meta property="og:url" content="https://www.sakuraky.cn/2025/02/23/Algorithm/index.html">
+<meta property="og:site_name" content="SakuraKy的博客">
+<meta property="og:description" content="Test19 删除链表的倒数第 N 个节点 通过快慢指针来解决，类似于你要删除中间元素的题  题目 解题过程1.初始化12ListNode dummy &#x3D; new ListNode(0);dummy.next &#x3D; head;   创建一个新指针，类型是 ListNode，它指向了 head 节点的地址 head 是链表的头结点，通常在链表操作中，它是整个链表的入口节点。通过 head 我们可以访问">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.sakuraky.cn/tupian/Lecode01.jpg">
+<meta property="article:published_time" content="2025-02-23T07:28:00.000Z">
+<meta property="article:modified_time" content="2025-02-23T12:18:47.696Z">
+<meta property="article:author" content="SakuraKy">
+<meta property="article:tag" content="链表">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.sakuraky.cn/tupian/Lecode01.jpg">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/tupian/hengbantupian.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>SakuraKy的博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/tupian/touxiang.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">SakuraKy </div>
+      <div class="dot"></div>
+      <div class="subtitle">Genius is an infinite capacity for taking pains. </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com/Sakurak_ky" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://steamcommunity.com/profiles/76561199024245019/" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/SakuraKy" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://t.me/sakuraky" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/517866344" title="BiliBili"><i class="fa-brands fa-bilibili"></i></a>
+        
+          <a class="link-btn" href="mailto:sakuraky.shen@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">分类</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">
+                算法
+                <div class="category-count">5</div>
+            </a>
+        
+            <a class="category-link" href="/categories/java/">
+                java
+                <div class="category-count">35</div>
+            </a>
+        
+            <a class="category-link" href="/categories/Docker/">
+                Docker
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/git/">
+                git
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">标签</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/API/" rel="tag">API</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/ArrayList/" rel="tag">ArrayList</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/IO/" rel="tag">IO</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/idea%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="tag">idea安装及使用</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E5%8A%A0%E5%BC%BA/" rel="tag">基础加强</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" rel="tag">学生管理系统</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF/" rel="tag">循环</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%96%B9%E6%B3%95/" rel="tag">方法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" rel="tag">流程控制语句</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="tag">环境变量</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BB%83%E4%B9%A0/" rel="tag">练习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%AF%AD%E6%B3%95/" rel="tag">语法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-Algorithm" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img" rel="gallery_cm7hlk55p0000nnw5g9777c13">
+        <img src="/tupian/Lecode01.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        算法-链表
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-02-23T07:28:00.000Z" itemprop="datePublished">2025-02-23</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            4.7k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="Test19-删除链表的倒数第-N-个节点"><a href="#Test19-删除链表的倒数第-N-个节点" class="headerlink" title="Test19 删除链表的倒数第 N 个节点"></a>Test19 删除链表的倒数第 N 个节点</h1><blockquote>
+<p>通过快慢指针来解决，类似于你要删除中间元素的题</p>
+</blockquote>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><img src="/tupian/Lecode19.png" alt="image-20210923091350952"></p>
+<h2 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h2><h3 id="1-初始化"><a href="#1-初始化" class="headerlink" title="1.初始化"></a>1.初始化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">dummy.next = head;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建一个新指针，类型是 ListNode，它指向了 head 节点的地址</li>
+<li>head 是链表的头结点，通常在链表操作中，它是整个链表的入口节点。通过 head 我们可以访问链表中的所有元素。</li>
+<li>dummy 是一个新的局部变量，它的作用是作为当前节点的指针，用来在链表中进行遍历、操作或修改，而不直接修改 head<blockquote>
+<p>这样做的好处：</p>
+<ol>
+<li>避免破坏链表的结构</li>
+<li>链表头部的访问性</li>
+<li>方便链表头部操作</li>
+<li>保持代码的清晰和简洁</li>
+<li>链表的复用和一致性</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-定义快慢指针"><a href="#2-定义快慢指针" class="headerlink" title="2.定义快慢指针:"></a>2.定义快慢指针:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ListNode</span> <span class="variable">slow</span> <span class="operator">=</span> dummy;</span><br><span class="line"><span class="type">ListNode</span> <span class="variable">fast</span> <span class="operator">=</span> dummy;</span><br></pre></td></tr></table></figure>
+
+<p>定义了两个指针 slow 和 fast，都从 dummy 开始。</p>
+<h3 id="3-快指针先走-n-步"><a href="#3-快指针先走-n-步" class="headerlink" title="3.快指针先走 n 步:"></a>3.快指针先走 n 步:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    fast = fast.next;</span><br><span class="line">    n--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fast 指针先走 n 步，这样在后续的过程中，fast 和 slow 之间的距离始终保持为 n 步。</li>
+<li>这样可以保证当 fast 到达链表的最后一个节点时，slow 恰好处在要删除节点的前一个节点。</li>
+</ul>
+<h3 id="4-快慢指针一起移动"><a href="#4-快慢指针一起移动" class="headerlink" title="4.快慢指针一起移动:"></a>4.快慢指针一起移动:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (fast.next != <span class="literal">null</span>) &#123;</span><br><span class="line">    slow = slow.next;</span><br><span class="line">    fast = fast.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fast 和 slow 同时向后移动，每次都移动一个节点，直到 fast 到达链表的最后一个节点。</li>
+<li>因为 fast 已经提前走了 n 步，所以当 fast 到达链表末尾时，slow 恰好指向的是要删除节点的前一个节点。</li>
+</ul>
+<h3 id="5-删除节点"><a href="#5-删除节点" class="headerlink" title="5.删除节点:"></a>5.删除节点:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slow.next = slow.next.next;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>此时 slow.next 就是要删除的节点，slow.next.next 是要删除节点的下一个节点。</li>
+<li>通过将 slow.next 指向 slow.next.next，就跳过了要删除的节点，从而完成了删除操作。</li>
+</ul>
+<h3 id="6-返回新链表的头"><a href="#6-返回新链表的头" class="headerlink" title="6.返回新链表的头:"></a>6.返回新链表的头:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> dummy.next;</span><br></pre></td></tr></table></figure>
+
+<p>最后返回 dummy.next，即新链表的头节点。如果删除的节点是头节点，dummy.next 就会指向新的头节点</p>
+<hr>
+<h3 id="cod"><a href="#cod" class="headerlink" title="cod"></a>cod</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">removeNthFromEnd</span><span class="params">(ListNode head, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="comment">// 定义伪指针，用来返回结果</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        <span class="comment">// 定义一个慢指针和一个快指针</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">slow</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">fast</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="comment">// 快指针先走n步</span></span><br><span class="line">        <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            n--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 快慢指针同时走，直到快指针走到最后一个节点</span></span><br><span class="line">        <span class="keyword">while</span> (fast.next != <span class="literal">null</span>) &#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 此时慢指针的下一个节点就是要删除的节点</span></span><br><span class="line">        slow.next = slow.next.next;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Test21-合并两个有序链表"><a href="#Test21-合并两个有序链表" class="headerlink" title="Test21 合并两个有序链表"></a>Test21 合并两个有序链表</h1><h2 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h2><p><img src="/tupian/Lecode21.png" alt="image-20210923091350952"></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><blockquote>
+<p>这道题类似于衣服上的拉链一样，有序插入</p>
+</blockquote>
+<h2 id="解体过程"><a href="#解体过程" class="headerlink" title="解体过程"></a>解体过程</h2><h3 id="1-创建虚拟头结点："><a href="#1-创建虚拟头结点：" class="headerlink" title="1.创建虚拟头结点："></a>1.创建虚拟头结点：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(-<span class="number">1</span>);</span><br><span class="line"><span class="type">ListNode</span> <span class="variable">p</span> <span class="operator">=</span> dummy;</span><br></pre></td></tr></table></figure>
+
+<p>dummy 是一个虚拟头结点，p 是指向当前合并链表末尾的指针。使用虚拟头结点可以简化链表操作，避免处理头结点为空的特殊情况。</p>
+<h3 id="2-初始化指针："><a href="#2-初始化指针：" class="headerlink" title="2.初始化指针："></a>2.初始化指针：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ListNode</span> <span class="variable">p1</span> <span class="operator">=</span> list1, p2 = list2;</span><br></pre></td></tr></table></figure>
+
+<p>p1 和 p2 分别是指向 list1 和 list2 的指针，用于遍历两个输入链表。</p>
+<h3 id="3-遍历并合并链表："><a href="#3-遍历并合并链表：" class="headerlink" title="3.遍历并合并链表："></a>3.遍历并合并链表：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (p1 != <span class="literal">null</span> &amp;&amp; p2 != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (p1.val &gt; p2.val) &#123;</span><br><span class="line">        p.next = p2;</span><br><span class="line">        p2 = p2.next;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        p.next = p1;</span><br><span class="line">        p1 = p1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p = p.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个循环中，p1 和 p2 同时遍历两个链表，比较当前节点的值：</p>
+<blockquote>
+<p>如果 p1 的值大于 p2 的值，将 p2 的节点连接到合并链表的末尾，并移动 p2 指针。<br>否则，将 p1 的节点连接到合并链表的末尾，并移动 p1 指针。 每次连接后，p 指针向后移动，指向合并链表的最新末尾节点。</p>
+</blockquote>
+<h3 id="4-处理剩余节点："><a href="#4-处理剩余节点：" class="headerlink" title="4.处理剩余节点："></a>4.处理剩余节点：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (p1 != <span class="literal">null</span>) &#123;</span><br><span class="line">    p.next = p1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (p2 != <span class="literal">null</span>) &#123;</span><br><span class="line">    p.next = p2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当其中一个链表遍历完毕后，另一个链表可能还有剩余节点。由于两个链表都是升序的，剩余的节点已经是有序的，因此可以直接将剩余的节点连接到合并链表的末尾。</p>
+<h3 id="5-返回合并后的链表："><a href="#5-返回合并后的链表：" class="headerlink" title="5.返回合并后的链表："></a>5.返回合并后的链表：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> dummy.next;</span><br></pre></td></tr></table></figure>
+
+<p>dummy.next 即为合并后的链表头节点。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>假设输入链表为 list1 &#x3D; [1, 2, 4] 和 list2 &#x3D; [1, 3, 4]，经过上述操作，合并后的链表为 [1, 1, 2, 3, 4, 4]。</p>
+<hr>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">mergeTwoLists</span><span class="params">(ListNode list1, ListNode list2)</span> &#123;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(-<span class="number">1</span>);</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">p</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">p1</span> <span class="operator">=</span> list1, p2 = list2;</span><br><span class="line">        <span class="keyword">while</span> (p1 != <span class="literal">null</span> &amp;&amp; p2 != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p1.val &gt; p2.val) &#123;</span><br><span class="line">                p.next = p2;</span><br><span class="line">                p2 = p2.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                p.next = p1;</span><br><span class="line">                p1 = p1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (p1 != <span class="literal">null</span>) &#123;</span><br><span class="line">            p.next = p1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (p2 != <span class="literal">null</span>) &#123;</span><br><span class="line">            p.next = p2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Test24-两两交换链表中的节点"><a href="#Test24-两两交换链表中的节点" class="headerlink" title="Test24 两两交换链表中的节点"></a>Test24 两两交换链表中的节点</h1><h2 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h2><p><img src="/tupian/Lecode24.png" alt="image-20210923091350952"></p>
+<blockquote>
+<p>这段代码是一个链表题目的迭代解法，旨在交换链表中每一对相邻的节点。与递归方法不同，使用了一个哨兵节点和迭代方式，避免了递归调用栈的额外开销。</p>
+</blockquote>
+<h2 id="解题过程-1"><a href="#解题过程-1" class="headerlink" title="解题过程"></a>解题过程</h2><h3 id="1-初始化哨兵节点："><a href="#1-初始化哨兵节点：" class="headerlink" title="1.初始化哨兵节点："></a>1.初始化哨兵节点：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>, head);</span><br></pre></td></tr></table></figure>
+
+<p>创建一个哨兵节点(虚拟节点) dummy，它的 next 指向链表的头节点 head。使用虚拟头节点的好处是可以方便地处理链表头部的交换（如果不使用虚拟头结点，链表头部交换会非常麻烦，因为需要额外的判断）。</p>
+<h3 id="2-定义两个指针："><a href="#2-定义两个指针：" class="headerlink" title="2.定义两个指针："></a>2.定义两个指针：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ListNode</span> <span class="variable">node0</span> <span class="operator">=</span> dummy;</span><br><span class="line"><span class="type">ListNode</span> <span class="variable">node1</span> <span class="operator">=</span> head;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>node0 指向哨兵节点，它始终保持指向当前交换对的前一个节点，负责连接交换后的节点。</li>
+<li>node1 指向当前交换对的第一个节点（即需要交换的节点的第一个节点），用于每次交换节点。</li>
+</ul>
+<h3 id="3-迭代交换每对节点："><a href="#3-迭代交换每对节点：" class="headerlink" title="3.迭代交换每对节点："></a>3.迭代交换每对节点：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (node1 != <span class="literal">null</span> &amp;&amp; node1.next != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">node2</span> <span class="operator">=</span> node1.next;  <span class="comment">// 第二个节点</span></span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">node3</span> <span class="operator">=</span> node2.next;  <span class="comment">// 第三个节点</span></span><br><span class="line"></span><br><span class="line">    node0.next = node2;           <span class="comment">// 让 node0 指向第二个节点</span></span><br><span class="line">    node2.next = node1;           <span class="comment">// 第二个节点指向第一个节点（交换）</span></span><br><span class="line">    node1.next = node3;           <span class="comment">// 第一个节点指向第三个节点（继续链表）</span></span><br><span class="line"></span><br><span class="line">    node0 = node1;                <span class="comment">// 让 node0 向前移动，指向当前交换对的第一个节点</span></span><br><span class="line">    node1 = node3;                <span class="comment">// 让 node1 向前移动，指向下一个交换对的第一个节点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每轮交换：交换 node1 和 node2 两个节点，并调整指针</p>
+<blockquote>
+<p>交换步骤： 1.获取节点：<br>node2 &#x3D; node1.next：获取 node1 的下一个节点（即第二个节点）。<br>node3 &#x3D; node2.next：获取 node2 的下一个节点（即第三个节点）。 2.交换相邻节点：<br>node0.next &#x3D; node2;：将 node0 的 next 指针指向 node2，使得 node2 成为当前子链表的头节点。<br>node2.next &#x3D; node1;：将 node2 的 next 指针指向 node1，将 node1 移到 node2 的后面。<br>node1.next &#x3D; node3;：将 node1 的 next 指针指向 node3，保证交换后的链表依然保持连接。 3.更新指针：<br>node0 &#x3D; node1;：将 node0 更新为 node1，因为下一次交换要从 node1 开始。<br>node1 &#x3D; node3;：将 node1 更新为 node3，因为下一次交换要从 node3 开始。</p>
+</blockquote>
+<h3 id="4-返回结果："><a href="#4-返回结果：" class="headerlink" title="4.返回结果："></a>4.返回结果：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> dummy.next; <span class="comment">// 返回新链表的头节点</span></span><br></pre></td></tr></table></figure>
+
+<p>最后返回 dummy.next，即链表的新的头节点。由于哨兵节点 dummy 是在原始头节点之前创建的，因此 dummy.next 就是链表经过交换后的新的头节点。</p>
+<hr>
+<h2 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">swapPairs</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>, head);</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">node0</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">node1</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">while</span> (node1 != <span class="literal">null</span> &amp;&amp; node1.next != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">node2</span> <span class="operator">=</span> node1.next;</span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">node3</span> <span class="operator">=</span> node2.next;</span><br><span class="line"></span><br><span class="line">            node0.next = node2;</span><br><span class="line">            node2.next = node1;</span><br><span class="line">            node1.next = node3;</span><br><span class="line"></span><br><span class="line">            node0 = node1;</span><br><span class="line">            node1 = node3;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2025/01/16/Docker/"
+      title="Docker入门讲解"
+     >
+
+    <p class="title-text">
+      
+        Docker入门讲解
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2025 SakuraKy<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
