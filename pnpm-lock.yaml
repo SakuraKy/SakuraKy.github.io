@@ -50,9 +50,6 @@ importers:
       hexo-symbols-count-time:
         specifier: ^0.7.1
         version: 0.7.1
-      hexo-theme-landscape:
-        specifier: ^1.0.0
-        version: 1.0.0
       hexo-theme-vivia:
         specifier: ^0.5.0
         version: 0.5.0
@@ -509,9 +506,6 @@ packages:
   hexo-symbols-count-time@0.7.1:
     resolution: {integrity: sha512-Zw19uxRIT/3VCvMQytG6HfBJc/IvfFJYui8cg6vyFAtDxkPOoZ1UlsPjrBRXYAqO6VjLc/vRi+Jthj38pKNPlw==}
     engines: {node: '>=10.9.0'}
-
-  hexo-theme-landscape@1.0.0:
-    resolution: {integrity: sha512-bWQJWMqQI78wWiJPQZq5pJBH20TM442ShCaHGRetuEgMraxH0OKxB3NTupJzNEkzEk8DV2yrdizkXdKN6i501A==}
 
   hexo-theme-vivia@0.5.0:
     resolution: {integrity: sha512-5v7TIVhSxa5jEIH0W6a6cv90EjBnQLm8ZZlE5HhMWM1Ufa1uQyI3rUThJcsxbQLrTQwCXbwVase1LVty00mqhQ==}
@@ -1554,8 +1548,6 @@ snapshots:
   hexo-symbols-count-time@0.7.1:
     dependencies:
       hexo-util: 1.9.0
-
-  hexo-theme-landscape@1.0.0: {}
 
   hexo-theme-vivia@0.5.0:
     dependencies:
